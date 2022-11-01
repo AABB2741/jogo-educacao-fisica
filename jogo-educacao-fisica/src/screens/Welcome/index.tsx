@@ -4,7 +4,7 @@ import {
 
 import styles from "./styles";
 
-export default function Home() {
+export default function Welcome() {
     return (
         <View style={styles.container}>
             
