@@ -8,8 +8,8 @@ import styles from "./styles";
 import theme from "../../utils/theme";
 
 interface Props extends TextProps {
-    children: React.ReactNode;
-    name: "seasons" | "title";
+    children: string | number | undefined;
+    name: "seasons" | "title" | "desc" | "coins";
 }
 
 export default function Font({ children, name, ...rest }: Props) {
