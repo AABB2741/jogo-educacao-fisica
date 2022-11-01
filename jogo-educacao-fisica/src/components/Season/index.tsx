@@ -10,13 +10,13 @@ import styles from "./styles";
 interface Props {
     name: string;
     desc: string;
-    background: string;
+    color: string;
     image: ImageSourcePropType;
 }
 
-export default function Season({ name, desc, background, image }: Props) {
+export default function Season({ name, desc, color, image }: Props) {
     return (
-        <View style={[styles.container, {backgroundColor: background}]}>
+        <View style={[styles.container, {backgroundColor: color}]}>
             <View>
                 <Image source={image} style={styles.image} />
             </View>
