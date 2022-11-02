@@ -11,6 +11,7 @@ export default {
         coins: "JosefinSans",
         seasons: "FugazOne",
         title: "Ubuntu",
+        subtitle: "Ubuntu-Regular",
         desc: "PTSans-Regular"
     }
 }

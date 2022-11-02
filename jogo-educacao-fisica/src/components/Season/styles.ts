@@ -1,11 +1,14 @@
 import { StyleSheet } from "react-native";
+import theme from "../../utils/theme";
 
 export default StyleSheet.create({
     container: {
         padding: 20,
+    },
+    presentation: {
         flexDirection: "row",
         alignItems: "flex-start",
-        justifyContent: "space-between",
+        justifyContent: "space-between"    
     },
     image: {
         width: 100,
@@ -21,5 +24,23 @@ export default StyleSheet.create({
     },
     seasonDesc: {
         fontSize: 14
+    },
+    doneCount: {
+        flexDirection: "row",
+        alignItems: "flex-end",
+        marginTop: 20
+    },
+    doneLevels: {
+        fontSize: 16
+    },
+    totalLevels: {
+        fontSize: 14,
+        marginLeft: 5
+    },
+    levels: {
+        marginTop: 10,
+        flexDirection: "row",
+        flexWrap: "wrap",
+        justifyContent: "space-between"
     }
 });

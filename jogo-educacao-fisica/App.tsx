@@ -16,7 +16,8 @@ export default function App() {
 		"PTSans-Bold": require("./assets/fonts/PTSans-Bold.ttf"),
 		"PTSans-Italic": require("./assets/fonts/PTSans-Italic.ttf"),
 		"PTSans-Regular": require("./assets/fonts/PTSans-Regular.ttf"),
-		"Ubuntu": require("./assets/fonts/Ubuntu-Bold.ttf")
+		"Ubuntu": require("./assets/fonts/Ubuntu-Bold.ttf"),
+		"Ubuntu-Regular": require("./assets/fonts/Ubuntu-Regular.ttf")
 	});
 
 	const onLayoutRootView = useCallback(async () => {
