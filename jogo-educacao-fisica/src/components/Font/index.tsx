@@ -8,8 +8,8 @@ import styles from "./styles";
 import theme from "../../utils/theme";
 
 interface Props extends TextProps {
-    children: string | number | undefined;
-    name: "seasons" | "title" | "desc" | "coins" | "subtitle";
+    children?: string | number | undefined;
+    name: "seasons" | "title" | "desc" | "coins" | "subtitle" | "obs";
 }
 
 export default function Font({ children, name, ...rest }: Props) {

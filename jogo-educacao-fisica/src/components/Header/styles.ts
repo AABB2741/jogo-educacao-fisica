@@ -8,7 +8,8 @@ export default StyleSheet.create({
         backgroundColor: theme.colors.background2,
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "space-between"
+        justifyContent: "space-between",
+        zIndex: 1
     },
     title: {
         fontSize: 16
@@ -18,6 +19,9 @@ export default StyleSheet.create({
     },
     option: {
         paddingLeft: 15
+    },
+    optionLeft: {
+        paddingRight: 15
     },
     float: {
         position: "absolute",

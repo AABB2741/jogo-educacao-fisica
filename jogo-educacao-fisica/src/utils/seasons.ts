@@ -1,6 +1,7 @@
+import Season from "../interfaces/season";
 import { summer } from "./levels";
 
-export default [{
+const seasons: Season[] = [{
     id: "summer",
     image: require("../../assets/imgs/summer.png"),
     name: "Verão",
@@ -29,3 +30,5 @@ export default [{
     color: "#c0ffbd",
     levels: []
 }];
+
+export default seasons;

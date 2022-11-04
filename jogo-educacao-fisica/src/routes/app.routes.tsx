@@ -4,15 +4,16 @@ import {
 } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { GameController, Bag, Scroll } from "phosphor-react-native";
+import { RootParamList } from "../@types/navigation";
 
 import Shop from "../screens/Shop";
-import Play from "../screens/Play";
+import PlayRoutes from "./play.routes";
 import Quests from "../screens/Quests";
 
 import Font from "../components/Font";
 import theme from "../utils/theme";
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator<RootParamList>();
 
 export default function Navigator() {
     return (
@@ -36,16 +37,16 @@ export default function Navigator() {
                 tabBarIcon: ({ focused }) => (
                     <View style={{ alignItems: "center" }}>
                         <Bag size={36} color={focused ? theme.colors.accent : theme.colors.font} style={focused && { transform: [{ rotate: "15deg" }] }} weight={focused ? "fill" : "duotone"} />
-                        {focused && <Font name="seasons" size={14} style={[{color: focused ? theme.colors.accent : theme.colors.font}]}>Loja</Font>}
+                        {focused && <Font name="seasons" style={[{color: focused ? theme.colors.accent : theme.colors.font}]}>Loja</Font>}
                     </View>
                 )
             }}></Tab.Screen>
-            <Tab.Screen name="Play" component={Play} options={{
+            <Tab.Screen name="Play" component={PlayRoutes} options={{
                 tabBarShowLabel: false,
                 tabBarIcon: ({ focused }) => (
                     <View style={{ alignItems: "center" }}>
                         <GameController size={36} color={focused ? theme.colors.accent : theme.colors.font} style={focused && { transform: [{ rotate: "15deg" }] }} weight={focused ? "fill" : "duotone"} />
-                        {focused && <Font name="seasons" size={14} style={[{color: focused ? theme.colors.accent : theme.colors.font}]}>Jogar!</Font>}
+                        {focused && <Font name="seasons" style={[{color: focused ? theme.colors.accent : theme.colors.font}]}>Jogar!</Font>}
                     </View>
                 )
             }} />
@@ -54,7 +55,7 @@ export default function Navigator() {
                 tabBarIcon: ({ focused }) => (
                     <View style={{ alignItems: "center" }}>
                         <Scroll size={36} color={focused ? theme.colors.accent : theme.colors.font} style={focused && { transform: [{ rotate: "15deg" }] }} weight={focused ? "fill" : "duotone"} />
-                        {focused && <Font name="seasons" size={14} style={[{color: focused ? theme.colors.accent : theme.colors.font}]}>Missões</Font>}
+                        {focused && <Font name="seasons" style={[{color: focused ? theme.colors.accent : theme.colors.font}]}>Missões</Font>}
                     </View>
                 )
             }} />

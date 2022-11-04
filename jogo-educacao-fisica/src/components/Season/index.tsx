@@ -9,17 +9,14 @@ import { Sun } from "phosphor-react-native";
 import styles from "./styles";
 
 import Level from "../Level";
-import LevelProps from "../../interfaces/Level";
+import LevelProp from "../../interfaces/level";
+import SeasonProp from "../../interfaces/season";
 
-interface Props {
-    name: string;
-    desc: string;
-    color: string;
-    image: ImageSourcePropType;
-    levels: LevelProps[];
+interface Props extends SeasonProp {
+
 }
 
-export default function Season({ name, desc, color, image, levels }: Props) {
+export default function Season({ id, name, desc, color, image, levels }: Props) {
     return (
         <View style={[styles.container, {backgroundColor: color}]}>
             <View style={styles.presentation}>

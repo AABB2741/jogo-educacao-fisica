@@ -4,10 +4,10 @@ import theme from "../../utils/theme";
 export default StyleSheet.create({
     container: {
         backgroundColor: theme.colors.background2,
-        width: "30%",
+        width: "32%",
         padding: 10,
         borderRadius: 8,
-        marginBottom: "3%",
+        marginBottom: "2%",
         flexDirection: "row",
         alignItems: "center"
     },

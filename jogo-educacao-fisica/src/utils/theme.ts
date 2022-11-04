@@ -4,14 +4,19 @@ export default {
         coins: "#FF8A00",
         credits: "#FF4D00",
         font: "#000",
+        font2: "#fff",
         background: "#eaeaea",
-        background2: "#fff"
+        background2: "#fff",
+        check_background: "#76FF76",
+        check: "#069B06",
+        desc2: "#D4D4D4"
     },
     fonts: {
         coins: "JosefinSans",
         seasons: "FugazOne",
         title: "Ubuntu",
         subtitle: "Ubuntu-Regular",
-        desc: "PTSans-Regular"
+        desc: "PTSans-Regular",
+        obs: "Lato"
     }
 }

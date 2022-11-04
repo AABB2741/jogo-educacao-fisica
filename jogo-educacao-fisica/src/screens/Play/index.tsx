@@ -11,6 +11,7 @@ import Header from "../../components/Header";
 import Season from "../../components/Season";
 
 import styles from "./styles";
+import levels from "../../utils/levels";
 import theme from "../../utils/theme";
 
 export default function Play() {
@@ -33,7 +34,7 @@ export default function Play() {
             <FlatList
                 contentContainerStyle={{ paddingTop: 50 }}
                 data={seasons}
-                renderItem={({item}) => <Season {...item} />}
+                renderItem={({item}) => <Season {...item} levels={levels.filter(l => l.seasonId == item.id)} />}
                 keyExtractor={item => item.id}
             />
         </View>
