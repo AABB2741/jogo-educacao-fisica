@@ -19,6 +19,7 @@ export default function Navigator() {
     return (
         <Tab.Navigator initialRouteName="Play" screenOptions={{
             headerShown: false,
+            tabBarHideOnKeyboard: true,
             tabBarStyle: {
                 position: "absolute",
                 height: 60,
