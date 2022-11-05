@@ -9,14 +9,18 @@ export default {
         background2: "#fff",
         check_background: "#76FF76",
         check: "#069B06",
+        desc: "#888888",
         desc2: "#D4D4D4"
     },
     fonts: {
+        text: "Mulish",
         coins: "JosefinSans",
         seasons: "FugazOne",
         title: "Ubuntu",
         subtitle: "Ubuntu-Regular",
         desc: "PTSans-Regular",
-        obs: "Lato"
+        desc_italic: "PTSans-Italic",
+        obs: "Lato",
+        input: "Rubik"
     }
 }

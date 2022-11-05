@@ -32,7 +32,7 @@ export default function Play() {
                 }}
             />
             <FlatList
-                contentContainerStyle={{ paddingTop: 50 }}
+                contentContainerStyle={{ paddingTop: 50, borderBottomWidth: 100, borderBottomColor: seasons.find(s => s.id == "spring")?.color }}
                 data={seasons}
                 renderItem={({item}) => <Season {...item} levels={levels.filter(l => l.seasonId == item.id)} />}
                 keyExtractor={item => item.id}

@@ -3,4 +3,5 @@ export default interface LevelProp {
     seasonId: "summer" | "falls" | "winter" | "spring";
     question: string;
     reward?: number;
+    words: string[];
 }

@@ -18,7 +18,8 @@ export default function App() {
 		"PTSans-Regular": require("./assets/fonts/PTSans-Regular.ttf"),
 		"Ubuntu": require("./assets/fonts/Ubuntu-Bold.ttf"),
 		"Ubuntu-Regular": require("./assets/fonts/Ubuntu-Regular.ttf"),
-		"Lato": require("./assets/fonts/Lato-Bold.ttf")
+		"Lato": require("./assets/fonts/Lato-Bold.ttf"),
+		"Rubik": require("./assets/fonts/Rubik-VariableFont_wght.ttf")
 	});
 
 	const onLayoutRootView = useCallback(async () => {

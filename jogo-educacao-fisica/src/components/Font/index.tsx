@@ -9,7 +9,7 @@ import theme from "../../utils/theme";
 
 interface Props extends TextProps {
     children?: string | number | undefined;
-    name: "seasons" | "title" | "desc" | "coins" | "subtitle" | "obs";
+    name: "text" | "seasons" | "title" | "desc" | "desc_italic" | "coins" | "subtitle" | "obs" | "input";
 }
 
 export default function Font({ children, name, ...rest }: Props) {
