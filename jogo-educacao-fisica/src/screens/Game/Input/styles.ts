@@ -3,6 +3,7 @@ import theme from "../../../utils/theme";
 
 export default StyleSheet.create({
     container: {
+        marginTop: 10,
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",

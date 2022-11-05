@@ -4,4 +4,5 @@ export default interface LevelProp {
     question: string;
     reward?: number;
     words: string[];
+    
 }

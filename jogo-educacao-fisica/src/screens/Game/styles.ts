@@ -3,12 +3,4 @@ import theme from "../../utils/theme";
 
 export default StyleSheet.create({
     container: {},
-    try: {
-        color: theme.colors.desc,
-        fontWeight: "bold"
-    },
-    question: {
-        color: theme.colors.font,
-        fontSize: 20
-    }
 });

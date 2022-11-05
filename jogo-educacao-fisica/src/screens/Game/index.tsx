@@ -16,6 +16,8 @@ import levels from "../../utils/levels";
 import Category from "./Category";
 import Guess from "./Guess";
 import Input from "./Input";
+import Question from "./Question";
+import Progress from "./Progress";
 
 interface GameProps {
     navigation: NativeStackNavigationProp<PlayParamList, "Game">;
@@ -30,24 +32,22 @@ export default function Game({ navigation, route }: GameProps) {
 
     return (
         <View style={styles.container}>
-            <Header title={`#${level.id + 1}. ${level?.question}`} hideFloat leftOptions={[{
+            <Header title={`#${level.id + 1}. ${level.question}`} hideFloat leftOptions={[{
                 icon: (
                     <TouchableOpacity onPress={navigation.goBack}>
                         <CaretLeft/>
                     </TouchableOpacity>
                 )
             }]} />
-            <ScrollView contentContainerStyle={{ padding: 20 }}>
-                <View>
-                    <View>
-                        <Font name="text" style={styles.try}>O que vem em sua mente?</Font>
-                        <Font name="seasons" style={styles.question}>{level.question}</Font>
-                    </View>
+            <ScrollView>
+                <Progress />
+                <View style={{ padding: 20 }}>
+                    <Question question={level.question} />
+                    <Input />
+                    <Category subtitle="Palavras encontradas">
+                        <Guess word="Quente" source="Palavras parecidas" pos={1} />
+                    </Category>
                 </View>
-                <Input />
-                <Category subtitle="Palavras encontradas">
-                    <Guess word="Quente" source="Palavras parecidas" pos={1} />
-                </Category>
             </ScrollView>
         </View>
     );
