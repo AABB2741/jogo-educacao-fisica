@@ -24,6 +24,7 @@ import Progress from "./Progress";
 import Word from "./Word";
 import { useState } from "react";
 import theme from "../../utils/theme";
+import Termo from "../../games/Termo";
 
 interface GameProps {
     navigation: NativeStackNavigationProp<PlayParamList, "Game">;
@@ -43,7 +44,8 @@ export default function Game({ navigation, route }: GameProps) {
 
     return (
         <View style={styles.container}>
-            <Modal visible={openGuess} animationType="slide" style={styles.guessModal} onRequestClose={() => setOpenGuess(false)}>
+            <Termo visible={true} word="toque" />
+            <Modal visible={openGuess} animationType="slide" onRequestClose={() => setOpenGuess(false)}>
                 <View style={styles.guessModalContent}>
                     <View style={styles.guessModalHeader}>
                         <TouchableOpacity style={{ padding: 10 }} onPress={() => setOpenGuess(false)}>

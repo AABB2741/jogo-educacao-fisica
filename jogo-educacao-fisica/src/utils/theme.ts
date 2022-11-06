@@ -9,6 +9,8 @@ export default {
         background2: "#fff",
         check_background: "#76FF76",
         check: "#069B06",
+        warn_background: "#fbff94",
+        warn_font: "#f6ff00",
         desc: "#888888",
         desc2: "#D4D4D4"
     },
