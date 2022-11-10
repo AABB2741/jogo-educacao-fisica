@@ -12,7 +12,8 @@ export default StyleSheet.create({
         zIndex: 1
     },
     title: {
-        fontSize: 16
+        fontSize: 16,
+        color: theme.colors.font
     },
     optionContainer: {
         flexDirection: "row"

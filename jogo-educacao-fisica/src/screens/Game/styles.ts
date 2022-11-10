@@ -9,6 +9,7 @@ export default StyleSheet.create({
     question: {
         textAlign: "center",
         fontSize: 16,
-        marginVertical: 30
+        marginTop: 30,
+        color: theme.colors.font
     }
 });

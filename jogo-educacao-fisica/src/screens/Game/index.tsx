@@ -24,6 +24,7 @@ import Progress from "./Progress";
 import WordList from "./WordList";
 import Found from "./Found";
 import Playing from "./Playing";
+import Guess from "./Guess";
 
 interface GameProps {
     navigation: NativeStackNavigationProp<PlayParamList, "Game">;
@@ -59,6 +60,9 @@ export default function Game({ navigation, route }: GameProps) {
                 
                 />
                 <Font name="seasons" style={styles.question}>{level.question}</Font>
+                <Category subtitle="Dê palpites">
+                    <Guess />
+                </Category>
                 <Category noPadding subtitle="Jogo de letras">
                     <WordList
                         play={(word: string) => setPlaying(word)}

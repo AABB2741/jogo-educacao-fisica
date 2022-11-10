@@ -7,6 +7,7 @@ export default StyleSheet.create({
     },
     subtitle: {
         fontSize: 16,
-        marginBottom: 10
+        marginBottom: 10,
+        color: theme.colors.font
     }
 });
