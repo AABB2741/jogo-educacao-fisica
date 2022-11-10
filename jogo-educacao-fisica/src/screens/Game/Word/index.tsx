@@ -13,13 +13,14 @@ interface Props {
     word: string;
     index: number;
     totalPercent: number;
+    play: (word: string) => void;
 }
 
-export default function Word({ word, index, totalPercent }: Props) {
+export default function Word({ word, index, totalPercent, play }: Props) {
     let percent = word.length / totalPercent * 100;
 
     return (
-        <TouchableOpacity style={styles.container}>
+        <TouchableOpacity style={styles.container} onPress={() => play(word)}>
             <View style={styles.statusContainer}>
                 <Font name="coins" style={styles.percent}>{`${percent.toFixed(0)}%`}</Font>
                 <CheckCircle weight="fill" size={12} color={theme.colors.accent} style={{ transform: [{ translateY: 1 }] }} />

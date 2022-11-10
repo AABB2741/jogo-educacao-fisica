@@ -9,6 +9,6 @@ export default StyleSheet.create({
     question: {
         textAlign: "center",
         fontSize: 16,
-        marginVertical: 50
+        marginVertical: 30
     }
 });

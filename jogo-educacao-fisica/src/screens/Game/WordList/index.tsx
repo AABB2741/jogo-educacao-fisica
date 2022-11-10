@@ -9,9 +9,10 @@ import styles from "./styles";
 
 interface Props extends LevelProp {
     level: LevelProp;
+    play: (word: string) => void;
 }
 
-export default function WordList({ level }: Props) {
+export default function WordList({ level, play }: Props) {
     return (
         <FlatList
             horizontal
@@ -20,6 +21,7 @@ export default function WordList({ level }: Props) {
             showsHorizontalScrollIndicator={false}
             renderItem={({ item, index }) => (
                 <Word
+                    play={play}
                     index={index}
                     word={item}
                     totalPercent={level.words.reduce((ac, v) => ac + v.length, 0)}

@@ -8,12 +8,13 @@ import styles from "./styles";
 interface Props {
     subtitle?: string;
     children?: React.ReactNode;
+    noPadding?: boolean;
 }
 
-export default function Category({ subtitle, children }: Props) {
+export default function Category({ subtitle, children, noPadding }: Props) {
     return (
-        <View style={styles.container}>
-            <Font name="subtitle" style={styles.subtitle}>{subtitle}</Font>
+        <View style={[styles.container, noPadding && { padding: 0 }]}>
+            <Font name="title" style={[styles.subtitle, noPadding && { paddingHorizontal: 20 }]}>{subtitle}</Font>
             {children}
         </View>
     );

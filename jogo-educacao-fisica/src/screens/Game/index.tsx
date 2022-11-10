@@ -19,9 +19,11 @@ import Category from "./Category";
 
 import styles from "./styles";
 import levels from "../../utils/levels";
-import WordList from "./WordList";
+
 import Progress from "./Progress";
+import WordList from "./WordList";
 import Found from "./Found";
+import Playing from "./Playing";
 
 interface GameProps {
     navigation: NativeStackNavigationProp<PlayParamList, "Game">;
@@ -30,6 +32,7 @@ interface GameProps {
 
 export default function Game({ navigation, route }: GameProps) {
     const level = levels.find(l => l.id == route.params.id);
+    const [playing, setPlaying] = useState("");
 
     if (!level) {
         navigation.goBack();
@@ -38,6 +41,11 @@ export default function Game({ navigation, route }: GameProps) {
 
     return (
         <View style={styles.container}>
+            <Playing
+                visible={!!playing}
+                onRequestClose={() => setPlaying("")}
+                word={playing}
+            />
             <Header
                 title={`${level.id + 1}. ${level.question}`}
                 leftOptions={[{
@@ -51,10 +59,13 @@ export default function Game({ navigation, route }: GameProps) {
                 
                 />
                 <Font name="seasons" style={styles.question}>{level.question}</Font>
-                <WordList
-                    level={level}
-                    {...level}
-                />
+                <Category noPadding subtitle="Jogo de letras">
+                    <WordList
+                        play={(word: string) => setPlaying(word)}
+                        level={level}
+                        {...level}
+                    />
+                </Category>
                 
                 <Category
                     subtitle="Palavras já encontradas"
