@@ -4,7 +4,7 @@ import {
 
 import styles from "./styles";
 
-export default function Progress() {
+export default function Status() {
     return (
         <View style={styles.container}>
             

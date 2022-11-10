@@ -30,7 +30,7 @@ export default function Header({ title, rightOptions, leftOptions, credit, hideF
         <View style={styles.container}>
             <View style={styles.optionContainer}>
                 {(leftOptions || []).map((option, i) => (
-                    <TouchableOpacity key={i} style={styles.optionLeft}>
+                    <TouchableOpacity key={i} style={styles.optionLeft} onPress={option.onPress}>
                         {option.icon}
                     </TouchableOpacity>
                 ))}

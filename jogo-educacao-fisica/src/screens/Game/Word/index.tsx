@@ -1,23 +1,34 @@
-import { Check } from "phosphor-react-native";
 import {
-    TouchableOpacity
+    TouchableOpacity,
+    View
 } from "react-native";
-import Font from "../../../components/Font";
-import theme from "../../../utils/theme";
 
 import styles from "./styles";
 
+import Font from "../../../components/Font";
+import { CheckCircle, Circle } from "phosphor-react-native";
+import theme from "../../../utils/theme";
+
 interface Props {
+    word: string;
     index: number;
-    done?: boolean;
-    text: string;
+    totalPercent: number;
 }
 
-export default function Word({ index, text, done }: Props) {
+export default function Word({ word, index, totalPercent }: Props) {
+    let percent = word.length / totalPercent * 100;
+
     return (
-        <TouchableOpacity style={[styles.container, done && {backgroundColor: theme.colors.check_background}]}>
-            <Font name="title" style={[styles.text, done && {color: theme.colors.font}]}>{done ? text : `Palavra ${index}`}</Font>
-            {done && <Check color={theme.colors.check} size={14} weight="bold" /> }
+        <TouchableOpacity style={styles.container}>
+            <View style={styles.statusContainer}>
+                <Font name="coins" style={styles.percent}>{`${percent.toFixed(0)}%`}</Font>
+                <CheckCircle weight="fill" size={12} color={theme.colors.accent} style={{ transform: [{ translateY: 1 }] }} />
+                {/* <Circle weight="thin" size={12} color={theme.colors.font} style={{ transform: [{ translateY: 1 }] }} /> */}
+            </View>
+            <Font name="title" style={styles.index}>{`#${index + 1}`}</Font>
+            <View style={styles.barContainer}>
+                <View style={[styles.bar, { width: `${percent}%` }]}></View>
+            </View>
         </TouchableOpacity>
     );
 }

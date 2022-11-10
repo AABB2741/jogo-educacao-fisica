@@ -5,7 +5,7 @@ export default {
         credits: "#FF4D00",
         font: "#000",
         font2: "#fff",
-        background: "#eaeaea",
+        background: "#f6f7fd",
         background2: "#fff",
         check_background: "#76FF76",
         check: "#069B06",
