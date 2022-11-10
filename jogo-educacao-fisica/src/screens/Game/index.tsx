@@ -22,6 +22,7 @@ import levels from "../../utils/levels";
 import theme from "../../utils/theme";
 import Word from "./Word";
 import WordList from "./WordList";
+import Progress from "./Progress";
 
 interface GameProps {
     navigation: NativeStackNavigationProp<PlayParamList, "Game">;
@@ -46,17 +47,22 @@ export default function Game({ navigation, route }: GameProps) {
                 }]}
                 hideFloat
             />
-            <Font name="seasons" style={styles.question}>{level.question}</Font>
-            <WordList
-                level={level}
-                {...level}
-            />
-            
-            <Category
-                subtitle="Palavras já encontradas"
-            >
+            <ScrollView>
+                <Progress
+                
+                />
+                <Font name="seasons" style={styles.question}>{level.question}</Font>
+                <WordList
+                    level={level}
+                    {...level}
+                />
+                
+                <Category
+                    subtitle="Palavras já encontradas"
+                >
 
-            </Category>
+                </Category>
+            </ScrollView>
         </View>
     );
 }

@@ -8,6 +8,7 @@ export default StyleSheet.create({
     },
     question: {
         textAlign: "center",
-        fontSize: 16
+        fontSize: 16,
+        marginVertical: 50
     }
 });
