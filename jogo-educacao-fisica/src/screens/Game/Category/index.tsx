@@ -10,10 +10,11 @@ interface Props {
     children?: React.ReactNode;
 }
 
-export default function Category({ subtitle }: Props) {
+export default function Category({ subtitle, children }: Props) {
     return (
         <View style={styles.container}>
             <Font name="subtitle" style={styles.subtitle}>{subtitle}</Font>
+            {children}
         </View>
     );
 }

@@ -19,10 +19,9 @@ import Category from "./Category";
 
 import styles from "./styles";
 import levels from "../../utils/levels";
-import theme from "../../utils/theme";
-import Word from "./Word";
 import WordList from "./WordList";
 import Progress from "./Progress";
+import Found from "./Found";
 
 interface GameProps {
     navigation: NativeStackNavigationProp<PlayParamList, "Game">;
@@ -60,7 +59,11 @@ export default function Game({ navigation, route }: GameProps) {
                 <Category
                     subtitle="Palavras já encontradas"
                 >
-
+                    <Found
+                        word="Vasco"
+                        tries={2}
+                        index={15}
+                    />
                 </Category>
             </ScrollView>
         </View>
