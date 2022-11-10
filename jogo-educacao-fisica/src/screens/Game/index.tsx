@@ -21,6 +21,7 @@ import styles from "./styles";
 import levels from "../../utils/levels";
 import theme from "../../utils/theme";
 import Word from "./Word";
+import WordList from "./WordList";
 
 interface GameProps {
     navigation: NativeStackNavigationProp<PlayParamList, "Game">;
@@ -45,27 +46,17 @@ export default function Game({ navigation, route }: GameProps) {
                 }]}
                 hideFloat
             />
-            <ScrollView contentContainerStyle={{ padding: 20 }}>
-                <Font name="seasons" style={styles.question}>{level.question}</Font>
-                <FlatList
-                    horizontal
-                    data={level.words.sort((a, b) => a.length > b.length ? -1 : 1)}
-                    style={{ marginVertical: 20 }}
-                    showsHorizontalScrollIndicator={false}
-                    renderItem={({ item, index }) => (
-                        <Word
-                            index={index}
-                            word={item}
-                            totalPercent={level.words.reduce((ac, v) => ac + v.length, 0)}
-                        />
-                    )}
-                />
-                <Category
-                    subtitle="Palavras já encontradas"
-                >
+            <Font name="seasons" style={styles.question}>{level.question}</Font>
+            <WordList
+                level={level}
+                {...level}
+            />
+            
+            <Category
+                subtitle="Palavras já encontradas"
+            >
 
-                </Category>
-            </ScrollView>
+            </Category>
         </View>
     );
 }
