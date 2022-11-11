@@ -3,6 +3,7 @@ export default {
         accent: "#1e90ff",
         coins: "#FF8A00",
         credits: "#FF4D00",
+        icon: "#c9c9c9",
         font: "#000",
         font2: "#fff",
         background: "#f6f7fd",

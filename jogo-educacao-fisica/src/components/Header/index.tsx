@@ -11,7 +11,7 @@ import theme from "../../utils/theme";
 
 interface OptionProps {
     icon: React.ReactNode;
-    onPress?: () => void;
+    onPress?: any;
 }
 
 interface Props {

@@ -9,7 +9,7 @@ import {
     FlatList
 } from "react-native";
 import Header from "../../components/Header";
-import { CaretLeft, X, Check } from "phosphor-react-native";
+import { CaretLeft, Chats, Lightbulb } from "phosphor-react-native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { PlayParamList } from "../../@types/navigation";
 import { RouteProp } from "@react-navigation/native";
@@ -25,6 +25,8 @@ import WordList from "./WordList";
 import Found from "./Found";
 import Playing from "./Playing";
 import Guess from "./Guess";
+import Empty from "../../components/Empty";
+import theme from "../../utils/theme";
 
 interface GameProps {
     navigation: NativeStackNavigationProp<PlayParamList, "Game">;
@@ -55,7 +57,7 @@ export default function Game({ navigation, route }: GameProps) {
                 }]}
                 hideFloat
             />
-            <ScrollView>
+            <ScrollView contentContainerStyle={{ paddingBottom: 90 }}>
                 <Progress
                 
                 />
@@ -71,13 +73,23 @@ export default function Game({ navigation, route }: GameProps) {
                     />
                 </Category>
                 
-                <Category
-                    subtitle="Palavras já encontradas"
-                >
+                <Category subtitle="Palavras já encontradas" >
+                    <Empty
+                        icon={<Lightbulb size={24} color={theme.colors.font} />}
+                        title="Nada encontrado ainda"
+                        desc="Você ainda não encontrou nenhuma palavra."
+                    />
                     <Found
                         word="Vasco"
                         tries={2}
                         index={15}
+                    />
+                </Category>
+                <Category subtitle="Palpites já feitos">
+                    <Empty
+                        icon={<Chats size={24} color={theme.colors.font} weight="duotone" />}
+                        title="Sem palpites"
+                        desc="Você ainda não deu nenhum palpite. Escreva qualquer coisa!"
                     />
                 </Category>
             </ScrollView>

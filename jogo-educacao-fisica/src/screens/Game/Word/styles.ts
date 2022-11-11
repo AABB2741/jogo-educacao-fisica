@@ -33,6 +33,7 @@ export default StyleSheet.create({
     },
     barContainer: {
         backgroundColor: theme.colors.desc2,
-        borderRadius: 5
+        borderRadius: 5,
+        overflow: "hidden"
     }
 });
