@@ -7,6 +7,7 @@ import * as SplashScreen from "expo-splash-screen";
 SplashScreen.preventAutoHideAsync();
 
 import AppRoutes from "./src/routes/app.routes";
+import StorageProvider from "./src/contexts/storage";
 
 export default function App() {
 	const [fontsLoaded] = useFonts({
@@ -34,7 +35,9 @@ export default function App() {
 		<View style={{ flex: 1 }} onLayout={onLayoutRootView}>
 			<StatusBar barStyle="default" />
 			<NavigationContainer>
-				<AppRoutes />
+				<StorageProvider>
+					<AppRoutes />
+				</StorageProvider>
 			</NavigationContainer>
 		</View>
 	);

@@ -8,6 +8,7 @@ import Font from "../Font";
 
 import styles from "./styles";
 import theme from "../../utils/theme";
+import { useStorage } from "../../contexts/storage";
 
 interface OptionProps {
     icon: React.ReactNode;
@@ -26,6 +27,8 @@ interface Props {
 }
 
 export default function Header({ title, rightOptions, leftOptions, credit, hideFloat }: Props) {
+    const { coins } = useStorage();
+
     return (
         <View style={styles.container}>
             <View style={styles.optionContainer}>
@@ -52,7 +55,7 @@ export default function Header({ title, rightOptions, leftOptions, credit, hideF
                         </View>
                         <View style={styles.coins}>
                             <Coins color={theme.colors.coins} />
-                            <Font name="coins" style={styles.coinsText}>5000</Font>
+                            <Font name="coins" style={styles.coinsText}>{coins ?? 0}</Font>
                         </View>
                     </View>
                 )
