@@ -9,10 +9,11 @@ import {
     FlatList
 } from "react-native";
 import Header from "../../components/Header";
-import { CaretLeft, Chats, Lightbulb } from "phosphor-react-native";
+import { CaretLeft, Chats, Database, Lightbulb } from "phosphor-react-native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { PlayParamList } from "../../@types/navigation";
 import { RouteProp } from "@react-navigation/native";
+import { useStorage } from "../../contexts/storage";
 
 import Font from "../../components/Font";
 import Category from "./Category";
@@ -27,6 +28,8 @@ import Playing from "./Playing";
 import Guess from "./Guess";
 import Empty from "../../components/Empty";
 import theme from "../../utils/theme";
+import normalize from "../../utils/normalize";
+import { LevelProgress } from "../../@types/progress";
 
 interface GameProps {
     navigation: NativeStackNavigationProp<PlayParamList, "Game">;
@@ -42,6 +45,13 @@ export default function Game({ navigation, route }: GameProps) {
         return null;
     }
 
+    const { storage, setStorage } = useStorage();
+    let levelData = storage.levels?.find(l => l.id == level.id || { id: level.id }) ?? { id: level.id };
+
+    function handleGuess(guess: string) {
+        
+    }
+
     return (
         <View style={styles.container}>
             <Playing
@@ -52,8 +62,12 @@ export default function Game({ navigation, route }: GameProps) {
             <Header
                 title={`${level.id + 1}. ${level.question}`}
                 leftOptions={[{
-                    icon: <CaretLeft/>,
+                    icon: <CaretLeft />,
                     onPress: navigation.goBack
+                }]}
+                rightOptions={[{
+                    icon: <Database />,
+                    onPress: () => console.log(storage)
                 }]}
                 hideFloat
             />
@@ -63,7 +77,9 @@ export default function Game({ navigation, route }: GameProps) {
                 />
                 <Font name="seasons" style={styles.question}>{level.question}</Font>
                 <Category subtitle="Dê palpites">
-                    <Guess />
+                    <Guess
+                        send={handleGuess}
+                    />
                 </Category>
                 <Category noPadding subtitle="Jogo de letras">
                     <WordList

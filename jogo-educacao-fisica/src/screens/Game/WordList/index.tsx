@@ -17,7 +17,7 @@ export default function WordList({ level, play }: Props) {
         <FlatList
             horizontal
             data={level.words.sort((a, b) => a.length > b.length ? -1 : 1)}
-            contentContainerStyle={{ paddingLeft: 20 }}
+            contentContainerStyle={{ paddingLeft: 20, paddingRight: 10 }}
             showsHorizontalScrollIndicator={false}
             renderItem={({ item, index }) => (
                 <Word

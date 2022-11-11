@@ -6,7 +6,7 @@ export default StyleSheet.create({
         backgroundColor: theme.colors.background2,
         padding: 10,
         borderRadius: 12,
-        marginRight: 20,
+        marginRight: 10,
         width: 100,
         height: 100,
         justifyContent: "space-between"

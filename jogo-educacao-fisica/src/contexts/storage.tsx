@@ -1,21 +1,27 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
-const StorageContext = createContext<Progress>({});
+import { Progress } from "../@types/progress";
 
 interface Props {
     children: React.ReactNode;
 }
 
+interface StorageData {
+    storage: Progress;
+    setStorage: any;
+}
+
+const StorageContext = createContext<StorageData>({} as StorageData);
+
 export default ({ children }: Props) => {
-    const [progress, setProgress] = useState<Progress>({});
+    const [storage, setStorage] = useState<Progress>({});
 
     useEffect(() => {
-        AsyncStorage.getItem("progress").then(progress => setProgress(JSON.parse(progress ?? "{}")));
+        AsyncStorage.getItem("progress").then(progress => setStorage(JSON.parse(progress ?? "{}")));
     }, []);
 
     return (
-        <StorageContext.Provider value={progress}>
+        <StorageContext.Provider value={{ storage, setStorage }}>
             {children}
         </StorageContext.Provider>
     );
