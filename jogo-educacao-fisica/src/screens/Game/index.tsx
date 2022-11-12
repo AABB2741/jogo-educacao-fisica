@@ -135,6 +135,7 @@ export default function Game({ navigation, route }: GameProps) {
                             word={level.words.find(w => w.index == word)?.word ?? ""}
                             index={index}
                             key={index}
+                            check
                         />
                     ))}
                 </Category>

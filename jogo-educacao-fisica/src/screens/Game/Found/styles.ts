@@ -6,17 +6,15 @@ export default StyleSheet.create({
         padding: 20,
         marginBottom: 10,
         backgroundColor: theme.colors.background2,
-        borderRadius: 12,
+        borderRadius: 12
+    },
+    content: {
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between"
     },
     word: {
         fontSize: 16,
-        color: theme.colors.font
-    },
-    tries: {
-        fontSize: 14,
         color: theme.colors.font
     },
     index: {
