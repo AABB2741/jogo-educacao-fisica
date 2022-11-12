@@ -45,11 +45,28 @@ export default function Game({ navigation, route }: GameProps) {
         return null;
     }
 
-    const { storage, setStorage } = useStorage();
-    let levelData = storage.levels?.find(l => l.id == level.id || { id: level.id }) ?? { id: level.id };
+    const { storage, save } = useStorage();
+    let data: LevelProgress = {
+        ...(storage.levels?.find(l => l.id == level.id) ?? { id: level.id })
+    }
 
     function handleGuess(guess: string) {
-        
+        if (!level)
+            return;
+
+        if (!data.guesses)
+            data.guesses = [];
+
+        for (let g of data.guesses) {
+            if (normalize(g).toLowerCase() == normalize(g).toLowerCase())
+                return;
+        }
+
+        data.guesses.push(guess);
+        save({
+            levelID: level.id,
+            data
+        });
     }
 
     return (
@@ -83,9 +100,8 @@ export default function Game({ navigation, route }: GameProps) {
                 </Category>
                 <Category noPadding subtitle="Jogo de letras">
                     <WordList
-                        play={(word: string) => setPlaying(word)}
-                        level={level}
-                        {...level}
+                        words={level.words}
+                        play={handleGuess}
                     />
                 </Category>
                 

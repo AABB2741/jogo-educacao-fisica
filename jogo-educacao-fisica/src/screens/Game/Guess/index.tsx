@@ -26,9 +26,15 @@ export default function Guess({ send }: Props) {
                 placeholder="Dê um palpite..."
                 value={guess}
                 onChangeText={text => setGuess(text)}
-                onSubmitEditing={() => send(guess)}
+                onSubmitEditing={() => {
+                    send(guess);
+                    setGuess("");
+                }}
             />
-            <TouchableOpacity style={styles.button} onPress={() => send(guess)}>
+            <TouchableOpacity style={styles.button} onPress={() => {
+                send(guess);
+                setGuess("");
+            }}>
                 <ArrowRight size={16} />
             </TouchableOpacity>
         </View>

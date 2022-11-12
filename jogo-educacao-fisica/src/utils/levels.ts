@@ -4,13 +4,18 @@ const levels: LevelProp[] = [{
     id: 0,
     seasonId: "summer",
     question: "O verão é...",
-    words: [
-        "Legal",
-        "Quente",
-        "Estação",
-        "Bom",
-        "Divertido"
-    ]
+    words: [{
+        word: "Legal"
+    }, {
+        word: "Quente"
+    }, {
+        word: "Estação"
+    }, {
+        word: "Bom"
+    }, {
+        word: "Divertido",
+        unlock: 3
+    }]
 }, {
     id: 1,
     seasonId: "summer",
@@ -51,6 +56,13 @@ const levels: LevelProp[] = [{
     seasonId: "summer",
     question: "",
     words: []
-}];
+}].map(level => {
+    level.words = level.words.map((word, index) => ({
+        ...word,
+        index: index + 1
+    }));
+    console.log(level);
+    return level;
+}) as LevelProp[];
 
 export default levels;

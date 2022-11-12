@@ -16,6 +16,16 @@ export default StyleSheet.create({
         alignItems: "center",
         justifyContent: "space-between"
     },
+    lock: {
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center"
+    },
+    lockRequirements: {
+        fontSize: 12,
+        marginTop: 5,
+        color: theme.colors.font
+    },
     percent: {
         color: theme.colors.accent,
         fontSize: 12
