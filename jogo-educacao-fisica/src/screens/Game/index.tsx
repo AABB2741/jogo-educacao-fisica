@@ -68,7 +68,7 @@ export default function Game({ navigation, route }: GameProps) {
             data
         });
     }
-
+    
     return (
         <View style={styles.container}>
             <Playing
@@ -123,7 +123,9 @@ export default function Game({ navigation, route }: GameProps) {
                         title="Sem palpites"
                         desc="Você ainda não deu nenhum palpite. Escreva qualquer coisa!"
                     />
-                    {}
+                    {data.guesses?.map(guess => (
+                        <Font name="title">{guess}</Font>
+                    ))}
                 </Category>
             </ScrollView>
         </View>

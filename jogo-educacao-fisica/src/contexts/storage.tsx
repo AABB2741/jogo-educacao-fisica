@@ -1,5 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+// import Storage from "@react-native-async-storage/async-storage";
+import * as Storage from "../utils/storage";
+
 import { LevelProgress, Progress } from "../@types/progress";
 
 interface Props {
@@ -25,10 +27,18 @@ export default ({ children }: Props) => {
     async function save({ levelID, data }: SaveProps) {
         console.log("Salvando:");
         console.log(data);
+        let newData = { ...storage };
+        if (!newData.levels)
+            newData.levels = [data];
+
+        newData.levels[newData.levels.findIndex(level => level.id == levelID) ?? 0] = { ...data };
+        await Storage.setItem("progress", newData);
+        setStorage(newData);
+        console.log(newData);
     }
 
     useEffect(() => {
-        AsyncStorage.getItem("progress").then(progress => setStorage(JSON.parse(progress ?? "{}")));
+        Storage.getItem("progress").then(progress => setStorage(progress));
     }, []);
 
     return (
