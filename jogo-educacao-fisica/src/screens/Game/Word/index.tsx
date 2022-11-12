@@ -34,7 +34,7 @@ export default function Word({ word, index, percent, lock, found, unlock, play }
     return (
         <TouchableOpacity style={styles.container} onPress={() => play(word)}>
             <View style={styles.statusContainer}>
-                <Font name="coins" style={styles.percent}>{`${percent.toFixed(0)}%`}</Font>
+                <Font name="coins" style={[styles.percent, { color: found ? theme.colors.accent : theme.colors.font }]}>{`${percent.toFixed(0)}%`}</Font>
                 { found ? (
                     <CheckCircle weight="fill" size={12} color={theme.colors.accent} style={{ transform: [{ translateY: 1 }] }} />
                 ) : (

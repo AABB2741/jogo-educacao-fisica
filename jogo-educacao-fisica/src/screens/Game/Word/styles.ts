@@ -27,7 +27,6 @@ export default StyleSheet.create({
         color: theme.colors.font
     },
     percent: {
-        color: theme.colors.accent,
         fontSize: 12
     },
     index: {
