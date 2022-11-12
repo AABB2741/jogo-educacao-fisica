@@ -48,17 +48,22 @@ const levels = [{
     question: "",
     words: []
 }].map((level, id) => {
-    level.words = level.words.map((word, index) => ({
-        ...word,
-        index: index + 1
-    }));
     return {
         ...level,
         id,
-        get percent() {
-            return 0;
+        get size() {
+            return level.words.reduce((ac, v) => ac + v.word.length, 0);
         },
     };
+}).map(level => {
+    level.words = level.words.map((word, index) => ({
+        ...word,
+        index: index + 1,
+        get percent() {
+            return word.word.length / level.size * 100;
+        }
+    }));
+    return level;
 }) as LevelProp[];
 
 export default levels;

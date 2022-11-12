@@ -2,7 +2,7 @@ import {
     FlatList
 } from "react-native";
 import Font from "../../../components/Font";
-import LevelProp, { WordProps } from "../../../interfaces/level";
+import { WordProps } from "../../../interfaces/level";
 import Word from "../Word";
 
 import styles from "./styles";
@@ -19,11 +19,10 @@ export default function WordList({ words, play }: Props) {
             data={words}
             contentContainerStyle={{ paddingLeft: 20, paddingRight: 10 }}
             showsHorizontalScrollIndicator={false}
-            renderItem={({ item, index }) => (
+            renderItem={({ item }) => (
                 <Word
                     { ...item }
                     play={play}
-                    totalPercent={words.reduce((ac, v) => ac + v.word.length, 0)}
                 />
             )}
         />

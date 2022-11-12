@@ -44,7 +44,7 @@ export default function Game({ navigation, route }: GameProps) {
         navigation.goBack();
         return null;
     }
-    console.log(`${level.percent}%`);
+    
     const { storage, save } = useStorage();
     let data: LevelProgress = {
         ...(storage.levels?.find(l => l.id == level.id) ?? { id: level.id })

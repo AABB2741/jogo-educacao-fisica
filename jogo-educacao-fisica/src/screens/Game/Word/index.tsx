@@ -11,15 +11,12 @@ import theme from "../../../utils/theme";
 import { WordProps } from "../../../interfaces/level";
 
 interface Props extends WordProps {
-    totalPercent: number;
     lock?: boolean;
     found?: boolean;
     play: (word: string) => void;
 }
 
-export default function Word({ word, index, totalPercent, lock, found, unlock, play }: Props) {
-    let percent = word.length / totalPercent * 100;
-
+export default function Word({ word, index, percent, lock, found, unlock, play }: Props) {
     if (lock) {
         return (
             <View style={styles.container}>

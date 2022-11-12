@@ -2,6 +2,7 @@ export interface WordProps {
     word: string;
     index: number;
     unlock?: number;
+    get percent(): number;
 }
 
 export interface LevelProp {
@@ -10,5 +11,5 @@ export interface LevelProp {
     question: string;
     reward?: number;
     words: WordProps[];
-    get percent(): number;
+    get size(): number;
 }
