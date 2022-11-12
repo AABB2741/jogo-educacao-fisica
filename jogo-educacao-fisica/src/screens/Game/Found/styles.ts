@@ -4,6 +4,7 @@ import theme from "../../../utils/theme";
 export default StyleSheet.create({
     container: {
         padding: 20,
+        marginBottom: 10,
         backgroundColor: theme.colors.background2,
         borderRadius: 12,
         flexDirection: "row",

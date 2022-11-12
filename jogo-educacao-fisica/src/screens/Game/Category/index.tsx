@@ -9,13 +9,16 @@ interface Props {
     subtitle?: string;
     children?: React.ReactNode;
     noPadding?: boolean;
+    reverse?: boolean;
 }
 
-export default function Category({ subtitle, children, noPadding }: Props) {
+export default function Category({ subtitle, reverse, children, noPadding }: Props) {
     return (
         <View style={[styles.container, noPadding && { padding: 0 }]}>
             <Font name="title" style={[styles.subtitle, noPadding && { paddingHorizontal: 20 }]}>{subtitle}</Font>
-            {children}
+            <View style={[reverse && { flexDirection: "column-reverse" }]}>
+                {children}
+            </View>
         </View>
     );
 }

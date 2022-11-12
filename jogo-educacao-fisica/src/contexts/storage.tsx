@@ -25,16 +25,18 @@ export default ({ children }: Props) => {
     const [storage, setStorage] = useState<Progress>({});
 
     async function save({ levelID, data }: SaveProps) {
-        console.log("Salvando:");
-        console.log(data);
         let newData = { ...storage };
-        if (!newData.levels)
+        if (!newData.levels || newData.levels.length == 0)
             newData.levels = [data];
 
-        newData.levels[newData.levels.findIndex(level => level.id == levelID) ?? 0] = { ...data };
+        let index = newData.levels.findIndex(level => level.id == levelID);
+        if (index < 0) {
+            newData.levels.push(data);
+        } else {
+            newData.levels[index] = { ...data };
+        }
         await Storage.setItem("progress", newData);
         setStorage(newData);
-        console.log(newData);
     }
 
     useEffect(() => {

@@ -10,9 +10,13 @@ interface Props {
     icon?: React.ReactNode;
     title: string;
     desc?: string;
+    visible?: boolean;
 }
 
-export default function Empty({ title, desc, icon }: Props) {
+export default function Empty({ title, desc, icon, visible }: Props) {
+    if (!visible)
+        return null;
+
     return (
         <View style={styles.container}>
             {icon || <X size={24} color="#c9c9c9" />}

@@ -6,6 +6,7 @@ import {
     TouchableOpacity,
     Text
 } from "react-native";
+import theme from "../../../utils/theme";
 
 import styles from "./styles";
 
@@ -31,11 +32,11 @@ export default function Guess({ send }: Props) {
                     setGuess("");
                 }}
             />
-            <TouchableOpacity style={styles.button} onPress={() => {
+            <TouchableOpacity style={[styles.button]} onPress={() => {
                 send(guess);
                 setGuess("");
             }}>
-                <ArrowRight size={16} />
+                <ArrowRight size={16} color={theme.colors.accent} weight="bold" />
             </TouchableOpacity>
         </View>
     );

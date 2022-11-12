@@ -2,7 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function print(txt: string): void {
     let d = new Date();
-    console.log(`[Storage] ${txt} às ${d.getHours().toString().padStart(2, "0")}:${d.getMinutes().toString().padStart(2, "0")}:${d.getSeconds().toString().padStart(2, "0")}`);
+    console.log(`[Storage ${d.getHours().toString().padStart(2, "0")}:${d.getMinutes().toString().padStart(2, "0")}:${d.getSeconds().toString().padStart(2, "0")}] ${txt}`);
 }
 
 export function setItem(key: string, value: object): Promise<void> {

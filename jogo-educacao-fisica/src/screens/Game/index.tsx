@@ -49,7 +49,6 @@ export default function Game({ navigation, route }: GameProps) {
     let data: LevelProgress = {
         ...(storage.levels?.find(l => l.id == level.id) ?? { id: level.id })
     }
-
     function handleGuess(guess: string) {
         if (!level)
             return;
@@ -58,8 +57,9 @@ export default function Game({ navigation, route }: GameProps) {
             data.guesses = [];
 
         for (let g of data.guesses) {
-            if (normalize(g).toLowerCase() == normalize(g).toLowerCase())
+            if (normalize(g).toLowerCase() == normalize(guess).toLowerCase()) {
                 return;
+            }
         }
 
         data.guesses.push(guess);
@@ -117,14 +117,19 @@ export default function Game({ navigation, route }: GameProps) {
                         index={15}
                     />
                 </Category>
-                <Category subtitle="Palpites já feitos">
+                <Category subtitle="Palpites já feitos" reverse>
                     <Empty
                         icon={<Chats size={24} color={theme.colors.font} weight="duotone" />}
                         title="Sem palpites"
                         desc="Você ainda não deu nenhum palpite. Escreva qualquer coisa!"
+                        visible={!(data.guesses || []).length}
                     />
-                    {data.guesses?.map(guess => (
-                        <Font name="title">{guess}</Font>
+                    {data.guesses?.map((guess, index) => (
+                        <Found
+                            word={guess}
+                            index={index}
+                            key={index}
+                        />
                     ))}
                 </Category>
             </ScrollView>
