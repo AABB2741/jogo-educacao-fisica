@@ -4,10 +4,11 @@ export interface WordProps {
     unlock?: number;
 }
 
-export default interface LevelProp {
+export interface LevelProp {
     id: number;
-    seasonId: "summer" | "falls" | "winter" | "spring";
+    seasonId: seasons;
     question: string;
     reward?: number;
     words: WordProps[];
+    get percent(): number;
 }

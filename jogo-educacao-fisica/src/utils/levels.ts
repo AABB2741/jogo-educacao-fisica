@@ -1,7 +1,6 @@
-import LevelProp from "../interfaces/level";
+import { LevelProp } from "../interfaces/level";
 
-const levels: LevelProp[] = [{
-    id: 0,
+const levels = [{
     seasonId: "summer",
     question: "O verão é...",
     words: [{
@@ -17,52 +16,49 @@ const levels: LevelProp[] = [{
         unlock: 3
     }]
 }, {
-    id: 1,
     seasonId: "summer",
     question: "",
     words: []
 }, {
-    id: 2,
     seasonId: "summer",
     question: "",
     words: []
 }, {
-    id: 3,
     seasonId: "summer",
     question: "",
     words: []
 }, {
-    id: 4,
     seasonId: "summer",
     question: "",
     words: []
 }, {
-    id: 5,
     seasonId: "summer",
     question: "",
     words: []
 }, {
-    id: 6,
     seasonId: "summer",
     question: "",
     words: []
 }, {
-    id: 7,
     seasonId: "summer",
     question: "",
     words: []
 }, {
-    id: 8,
     seasonId: "summer",
     question: "",
     words: []
-}].map(level => {
+}].map((level, id) => {
     level.words = level.words.map((word, index) => ({
         ...word,
         index: index + 1
     }));
-    console.log(level);
-    return level;
+    return {
+        ...level,
+        id,
+        get percent() {
+            return 0;
+        },
+    };
 }) as LevelProp[];
 
 export default levels;

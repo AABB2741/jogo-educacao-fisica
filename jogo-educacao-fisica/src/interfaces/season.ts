@@ -1,10 +1,10 @@
 import {
     ImageSourcePropType
 } from "react-native";
-import LevelProp from "./level";
+import { LevelProp } from "./level";
 
 export default interface SeasonProp {
-    id: "summer" | "falls" | "winter" | "spring";
+    id: seasons;
     name: string;
     desc: string;
     image: ImageSourcePropType;
