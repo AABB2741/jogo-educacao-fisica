@@ -56,13 +56,30 @@ export default function Game({ navigation, route }: GameProps) {
         if (!data.guesses)
             data.guesses = [];
 
+        if (!data.found)
+            data.found = [];
+
         for (let g of data.guesses) {
             if (normalize(g).toLowerCase() == normalize(guess).toLowerCase()) {
                 return;
             }
         }
 
-        data.guesses.push(guess);
+        let hasFound = false;
+        for (let w of level.words) {
+            if (normalize(w.word).toLowerCase() == normalize(guess).toLowerCase()) {
+                if (!data.found.includes(w.index)) {
+                    data.found.push(w.index);
+                    hasFound = true;
+                    break;
+                } else return;
+            }
+        }
+
+        if (!hasFound) {
+            data.guesses.push(guess);
+        }
+        
         save({
             levelID: level.id,
             data
@@ -101,21 +118,25 @@ export default function Game({ navigation, route }: GameProps) {
                 <Category noPadding subtitle="Jogo de letras">
                     <WordList
                         words={level.words}
+                        data={data}
                         play={setPlaying}
                     />
                 </Category>
                 
-                <Category subtitle="Palavras já encontradas" >
+                <Category subtitle="Palavras já encontradas" reverse>
                     <Empty
                         icon={<Lightbulb size={24} color={theme.colors.font} />}
                         title="Nada encontrado ainda"
                         desc="Você ainda não encontrou nenhuma palavra."
+                        visible={!(data.found ?? []).length}
                     />
-                    <Found
-                        word="Vasco"
-                        tries={2}
-                        index={15}
-                    />
+                    {data.found?.map((word, index) => (
+                        <Found
+                            word={level.words.find(w => w.index == word)?.word ?? ""}
+                            index={index}
+                            key={index}
+                        />
+                    ))}
                 </Category>
                 <Category subtitle="Palpites já feitos" reverse>
                     <Empty
