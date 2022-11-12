@@ -13,10 +13,11 @@ import { WordProps } from "../../../interfaces/level";
 interface Props extends WordProps {
     totalPercent: number;
     lock?: boolean;
+    found?: boolean;
     play: (word: string) => void;
 }
 
-export default function Word({ word, index, totalPercent, lock, unlock, play }: Props) {
+export default function Word({ word, index, totalPercent, lock, found, unlock, play }: Props) {
     let percent = word.length / totalPercent * 100;
 
     if (lock) {
@@ -37,7 +38,11 @@ export default function Word({ word, index, totalPercent, lock, unlock, play }: 
         <TouchableOpacity style={styles.container} onPress={() => play(word)}>
             <View style={styles.statusContainer}>
                 <Font name="coins" style={styles.percent}>{`${percent.toFixed(0)}%`}</Font>
-                <CheckCircle weight="fill" size={12} color={theme.colors.accent} style={{ transform: [{ translateY: 1 }] }} />
+                { found ? (
+                    <CheckCircle weight="fill" size={12} color={theme.colors.accent} style={{ transform: [{ translateY: 1 }] }} />
+                ) : (
+                    <Circle weight="bold" size={12} color={theme.colors.font} style={{ transform: [{ translateY: 1 }] }} />
+                ) }
                 {/* <Circle weight="thin" size={12} color={theme.colors.font} style={{ transform: [{ translateY: 1 }] }} /> */}
             </View>
             <Font name="title" style={styles.index}>{`#${index}`}</Font>

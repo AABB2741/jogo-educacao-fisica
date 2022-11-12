@@ -101,7 +101,7 @@ export default function Game({ navigation, route }: GameProps) {
                 <Category noPadding subtitle="Jogo de letras">
                     <WordList
                         words={level.words}
-                        play={handleGuess}
+                        play={setPlaying}
                     />
                 </Category>
                 
@@ -123,6 +123,7 @@ export default function Game({ navigation, route }: GameProps) {
                         title="Sem palpites"
                         desc="Você ainda não deu nenhum palpite. Escreva qualquer coisa!"
                     />
+                    {}
                 </Category>
             </ScrollView>
         </View>

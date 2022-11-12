@@ -1,6 +1,6 @@
 export interface LevelProgress {
     id?: number;
-    found?: string[];
+    found?: number[];
     guesses?: string[];
 }
 

@@ -5,6 +5,9 @@ import {
     ScrollView,
     View
 } from "react-native";
+
+import { WordProps } from "../../../interfaces/level";
+
 import Font from "../../../components/Font";
 import Header from "../../../components/Header";
 import theme from "../../../utils/theme";
@@ -18,18 +21,19 @@ interface Props extends ModalProps {
 export default function Playing({ word, ...rest }: Props) {
     return (
         <Modal {...rest} animationType="slide">
+            <Header
+                hideFloat
+                title="Dê um palpite"
+                leftOptions={[{
+                    icon: <X color={theme.colors.font} />,
+                    onPress: rest.onRequestClose
+                }]}
+                rightOptions={[{
+                    icon: <Question color={theme.colors.font} />
+                }]}
+            />
             <ScrollView style={styles.container}>
-                <Header
-                    hideFloat
-                    title="Dê um palpite"
-                    leftOptions={[{
-                        icon: <X color={theme.colors.font} />,
-                        onPress: rest.onRequestClose
-                    }]}
-                    rightOptions={[{
-                        icon: <Question color={theme.colors.font} />
-                    }]}
-                />
+                <Font name="title" style={{ fontSize: 16 }}>{word}</Font>
             </ScrollView>
         </Modal>
     );
