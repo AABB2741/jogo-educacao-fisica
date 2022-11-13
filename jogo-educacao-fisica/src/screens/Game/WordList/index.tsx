@@ -15,17 +15,21 @@ interface Props {
 }
 
 export default function WordList({ words, data, play }: Props) {
+    let reversed = [...words];
+    reversed.sort((a, b) => a.percent <= b.percent ? -1 : 1).sort((a, b) => a.found(data.found ?? []) && !b.found(data.found ?? []) ? -1 : 0);
+    reversed.reverse();
+
     return (
         <FlatList
             horizontal
-            data={words}
+            data={reversed}
             contentContainerStyle={{ paddingLeft: 20, paddingRight: 10 }}
             showsHorizontalScrollIndicator={false}
             renderItem={({ item }) => (
                 <Word
                     { ...item }
+                    wasFound={item.found(data.found || [])}
                     play={play}
-                    found={(data.found ?? []).includes(item.index)}
                 />
             )}
         />

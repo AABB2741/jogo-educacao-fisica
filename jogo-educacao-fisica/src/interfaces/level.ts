@@ -3,6 +3,7 @@ export interface WordProps {
     index: number;
     unlock?: number;
     get percent(): number;
+    found(list: number[]): boolean;
 }
 
 export interface LevelProp {

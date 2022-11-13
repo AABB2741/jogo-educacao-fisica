@@ -1,4 +1,5 @@
 import { LevelProp } from "../interfaces/level";
+import normalize from "./normalize";
 
 const levels = [{
     seasonId: "summer",
@@ -61,6 +62,9 @@ const levels = [{
         index: index + 1,
         get percent() {
             return word.word.length / level.size * 100;
+        },
+        found(list: number[]) {
+            return list.includes(this.index);
         }
     }));
     return level;

@@ -12,11 +12,11 @@ import { WordProps } from "../../../interfaces/level";
 
 interface Props extends WordProps {
     lock?: boolean;
-    found?: boolean;
+    wasFound: boolean;
     play: (word: string) => void;
 }
 
-export default function Word({ word, index, percent, lock, found, unlock, play }: Props) {
+export default function Word({ word, index, percent, lock, wasFound, unlock, play }: Props) {
     if (lock) {
         return (
             <View style={styles.container}>
@@ -34,8 +34,8 @@ export default function Word({ word, index, percent, lock, found, unlock, play }
     return (
         <TouchableOpacity style={styles.container} onPress={() => play(word)}>
             <View style={styles.statusContainer}>
-                <Font name="coins" style={[styles.percent, { color: found ? theme.colors.accent : theme.colors.font }]}>{`${percent.toFixed(0)}%`}</Font>
-                { found ? (
+                <Font name="coins" style={[styles.percent, { color: wasFound ? theme.colors.accent : theme.colors.font }]}>{`${percent.toFixed(0)}%`}</Font>
+                { wasFound ? (
                     <CheckCircle weight="fill" size={12} color={theme.colors.accent} style={{ transform: [{ translateY: 1 }] }} />
                 ) : (
                     <Circle weight="bold" size={12} color={theme.colors.font} style={{ transform: [{ translateY: 1 }] }} />
