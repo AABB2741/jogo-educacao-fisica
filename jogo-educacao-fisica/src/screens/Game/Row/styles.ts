@@ -8,10 +8,18 @@ export default StyleSheet.create({
         justifyContent: "space-between",
         paddingLeft: 20,
         paddingRight: 10,
-        marginVertical: 30
+        marginVertical: 10
+    },
+    correct: {
+        backgroundColor: theme.colors.check_background
+    },
+    incorrect: {
+        backgroundColor: theme.colors.background2
+    },
+    misplaced: {
+        backgroundColor: theme.colors.warn_background
     },
     box: {
-        backgroundColor: theme.colors.background2,
         padding: 5,
         flex: 1,
         aspectRatio: 1,

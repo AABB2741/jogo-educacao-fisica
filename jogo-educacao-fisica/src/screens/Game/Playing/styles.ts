@@ -34,10 +34,9 @@ export default StyleSheet.create({
     },
     inputContainer: {
         flexDirection: "row",
-        alignItems: "center",
+        alignItems: "stretch",
         justifyContent: "center",
-        paddingHorizontal: 20,
-        paddingTop: 20
+        padding: 20
     },
     input: {
         backgroundColor: theme.colors.background2,
@@ -47,6 +46,15 @@ export default StyleSheet.create({
         borderRadius: 16,
         color: theme.colors.font,
         fontSize: 16,
-        fontFamily: theme.fonts.input
+        fontFamily: theme.fonts.input,
+        marginRight: 10
+    },
+    submit: {
+        padding: 10,
+        backgroundColor: theme.colors.background2,
+        aspectRatio: 1,
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: 12
     }
 });

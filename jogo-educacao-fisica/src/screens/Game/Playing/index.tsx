@@ -1,13 +1,15 @@
-import { CheckCircle, Question, X } from "phosphor-react-native";
+import { useState } from "react";
+import { ArrowRight, CheckCircle, Question, X } from "phosphor-react-native";
 import {
     Modal,
     ModalProps,
     ScrollView,
     TextInput,
-    View
+    View,
+    TouchableOpacity
 } from "react-native";
 
-import { WordProps } from "../../../interfaces/level";
+import { LevelProp, WordProps } from "../../../interfaces/level";
 
 import Font from "../../../components/Font";
 import Header from "../../../components/Header";
@@ -15,15 +17,42 @@ import theme from "../../../utils/theme";
 
 import styles from "./styles";
 import Row from "../Row";
+import { LevelProgress } from "../../../@types/progress";
 
 interface Props extends ModalProps {
     word: string;
-    question: string;
-    percent: number;
     tries: string[];
+    level: LevelProp;
+    data: LevelProgress;
 }
 
-export default function Playing({ question, word, percent, ...rest }: Props) {
+export default function Playing({ level, data, word, tries, ...rest }: Props) {
+    const [guess, setGuess] = useState("");
+    
+    let index = level.words.findIndex(w => w.word == word);
+    
+    if (index < 0)
+        return null;
+
+    let wordData = level.words[index];
+    let found = (data.found ?? []).includes(wordData.index);
+
+    function handleGuess() {
+
+    }
+
+    function createRows() {
+        let res = [];
+
+        for (let i = 0; i < word.length; i++) {
+            res.push(
+                <Row word={word} guess={""} key={i} />
+            )
+        }
+
+        return res;
+    }
+    
     return (
         <Modal {...rest} animationType="slide">
             <Header
@@ -38,21 +67,31 @@ export default function Playing({ question, word, percent, ...rest }: Props) {
                 }]}
             />
             <ScrollView style={styles.container}>
-                <View style={styles.doneContainer}>
+                <View style={[styles.doneContainer, !found && { display: "none" }]}>
                     <View style={styles.doneContent}>
                         <CheckCircle weight="fill" />
                         <Font name="title" style={styles.done}>Palavra encontrada</Font>
                     </View>
-                    <Font name="coins" style={{ color: theme.colors.check }}>{`${percent.toFixed(0)}%`}</Font>
+                    <Font name="coins" style={{ color: theme.colors.check }}>{`${wordData.percent.toFixed(0)}%`}</Font>
                 </View>
                 <View style={styles.questionContainer}>
-                    <Font name="seasons">{question}</Font>
+                    <Font name="seasons">{level.question}</Font>
                 </View>
                 <View>
-                    <Row word={word} guess="VASCO" />
+                    {createRows()}
                 </View>
-                <View style={styles.inputContainer}>
-                    <TextInput maxLength={word.length} style={styles.input} placeholder="O que você está pensando?" />
+                <View style={[styles.inputContainer, found && { display: "none" }]}>
+                    <TextInput
+                        maxLength={word.length}
+                        style={styles.input}
+                        placeholder="O que você está pensando?"
+                        value={guess}
+                        onChangeText={text => setGuess(text)}
+                        onSubmitEditing={handleGuess}
+                    />
+                    <TouchableOpacity style={styles.submit} onPress={handleGuess}>
+                        <ArrowRight color={theme.colors.font} size={16} />
+                    </TouchableOpacity>
                 </View>
             </ScrollView>
         </Modal>

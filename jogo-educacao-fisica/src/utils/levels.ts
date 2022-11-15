@@ -13,7 +13,7 @@ const levels = [{
     }, {
         word: "Bom"
     }, {
-        word: "Divertido",
+        word: "Demais",
         unlock: 3
     }]
 }, {
