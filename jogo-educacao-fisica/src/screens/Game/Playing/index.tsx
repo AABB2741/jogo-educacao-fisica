@@ -1,8 +1,9 @@
-import { Question, X } from "phosphor-react-native";
+import { CheckCircle, Question, X } from "phosphor-react-native";
 import {
     Modal,
     ModalProps,
     ScrollView,
+    TextInput,
     View
 } from "react-native";
 
@@ -16,9 +17,11 @@ import styles from "./styles";
 
 interface Props extends ModalProps {
     word: string;
+    question: string;
+    percent: number;
 }
 
-export default function Playing({ word, ...rest }: Props) {
+export default function Playing({ question, word, percent, ...rest }: Props) {
     return (
         <Modal {...rest} animationType="slide">
             <Header
@@ -33,7 +36,19 @@ export default function Playing({ word, ...rest }: Props) {
                 }]}
             />
             <ScrollView style={styles.container}>
-                <Font name="title" style={{ fontSize: 16 }}>{word}</Font>
+                <View style={styles.doneContainer}>
+                    <View style={styles.doneContent}>
+                        <CheckCircle weight="fill" />
+                        <Font name="title" style={styles.done}>Nível concluído</Font>
+                    </View>
+                    <Font name="coins">{`${percent.toFixed(0)}%`}</Font>
+                </View>
+                <View style={styles.questionContainer}>
+                    <Font name="seasons">{question}</Font>
+                </View>
+                <View style={styles.inputContainer}>
+                    <TextInput maxLength={word.length} style={styles.input} placeholder="O que você está pensando?" />
+                </View>
             </ScrollView>
         </Modal>
     );

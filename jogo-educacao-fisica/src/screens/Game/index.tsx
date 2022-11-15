@@ -92,6 +92,8 @@ export default function Game({ navigation, route }: GameProps) {
                 visible={!!playing}
                 onRequestClose={() => setPlaying("")}
                 word={playing}
+                percent={level?.words?.find(w => w.word == playing)?.percent ?? 0}
+                question={level.question}
             />
             <Header
                 title={`${level.id + 1}. ${level.question}`}

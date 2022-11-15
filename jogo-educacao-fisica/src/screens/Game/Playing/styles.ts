@@ -5,5 +5,47 @@ export default StyleSheet.create({
     container: {
         backgroundColor: theme.colors.background,
         flex: 1
+    },
+    doneContainer: {
+        padding: 20,
+        backgroundColor: theme.colors.check_background,
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between"
+    },
+    doneContent: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "flex-start",
+    },
+    done: {
+        fontSize: 14,
+        color: theme.colors.font,
+        marginLeft: 20
+    },
+    questionContainer: {
+        alignItems: "center",
+        justifyContent: "center",
+        paddingVertical: 30
+    },
+    question: {
+        color: theme.colors.font,
+        fontSize: 16
+    },
+    inputContainer: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+        paddingHorizontal: 20
+    },
+    input: {
+        backgroundColor: theme.colors.background2,
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+        flex: 1,
+        borderRadius: 16,
+        color: theme.colors.font,
+        fontSize: 16,
+        fontFamily: theme.fonts.input
     }
 });
