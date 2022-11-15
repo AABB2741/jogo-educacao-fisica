@@ -94,6 +94,7 @@ export default function Game({ navigation, route }: GameProps) {
                 word={playing}
                 percent={level?.words?.find(w => w.word == playing)?.percent ?? 0}
                 question={level.question}
+                tries={[] as string[]}
             />
             <Header
                 title={`${level.id + 1}. ${level.question}`}

@@ -14,11 +14,13 @@ import Header from "../../../components/Header";
 import theme from "../../../utils/theme";
 
 import styles from "./styles";
+import Row from "../Row";
 
 interface Props extends ModalProps {
     word: string;
     question: string;
     percent: number;
+    tries: string[];
 }
 
 export default function Playing({ question, word, percent, ...rest }: Props) {
@@ -39,12 +41,15 @@ export default function Playing({ question, word, percent, ...rest }: Props) {
                 <View style={styles.doneContainer}>
                     <View style={styles.doneContent}>
                         <CheckCircle weight="fill" />
-                        <Font name="title" style={styles.done}>Nível concluído</Font>
+                        <Font name="title" style={styles.done}>Palavra encontrada</Font>
                     </View>
-                    <Font name="coins">{`${percent.toFixed(0)}%`}</Font>
+                    <Font name="coins" style={{ color: theme.colors.check }}>{`${percent.toFixed(0)}%`}</Font>
                 </View>
                 <View style={styles.questionContainer}>
                     <Font name="seasons">{question}</Font>
+                </View>
+                <View>
+                    <Row word={word} guess="VASCO" />
                 </View>
                 <View style={styles.inputContainer}>
                     <TextInput maxLength={word.length} style={styles.input} placeholder="O que você está pensando?" />

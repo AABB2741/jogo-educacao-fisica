@@ -36,7 +36,8 @@ export default StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "center",
-        paddingHorizontal: 20
+        paddingHorizontal: 20,
+        paddingTop: 20
     },
     input: {
         backgroundColor: theme.colors.background2,

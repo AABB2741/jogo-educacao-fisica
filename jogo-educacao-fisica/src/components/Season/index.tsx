@@ -9,7 +9,6 @@ import { Sun } from "phosphor-react-native";
 import styles from "./styles";
 
 import Level from "../Level";
-import LevelProp from "../../interfaces/level";
 import SeasonProp from "../../interfaces/season";
 
 interface Props extends SeasonProp {
