@@ -8,6 +8,7 @@ import {
     View,
     TouchableOpacity
 } from "react-native";
+import { useStorage } from "../../../contexts/storage";
 
 import { LevelProp, WordProps } from "../../../interfaces/level";
 
@@ -27,9 +28,11 @@ interface Props extends ModalProps {
 }
 
 export default function Playing({ level, data, word, tries, ...rest }: Props) {
+    const { storage, setStorage } = useStorage();
     const [guess, setGuess] = useState("");
     
     let index = level.words.findIndex(w => w.word == word);
+    console.log("Index: " + index);
     
     if (index < 0)
         return null;
@@ -38,15 +41,36 @@ export default function Playing({ level, data, word, tries, ...rest }: Props) {
     let found = (data.found ?? []).includes(wordData.index);
 
     function handleGuess() {
+        if (!data.termoGuesses) {
+            data.termoGuesses = [];
+        }
 
+        // let newStorage = { ...storage };
+        // console.log(newStorage);
+        let levelIndex = storage.levels?.findIndex(l => l.id == level.id) ?? 0;
+        let newStorage = { ...storage };
+        
+        if (!newStorage.levels) {
+            newStorage.levels = [level];
+        }
+
+        let newData = { ...data };
+        newData.termoGuesses?.push({
+            index,
+            word: guess
+        });
+
+        newStorage.levels[levelIndex] = newData;
+        setStorage(newStorage);
     }
 
     function createRows() {
+        let guesses = data.termoGuesses?.filter(t => t.index == index);
         let res = [];
 
         for (let i = 0; i < word.length; i++) {
             res.push(
-                <Row word={word} guess={""} key={i} />
+                <Row word={word} guess={guesses?.[i]?.word ?? ""} rowNumber={i} key={i} />
             )
         }
 

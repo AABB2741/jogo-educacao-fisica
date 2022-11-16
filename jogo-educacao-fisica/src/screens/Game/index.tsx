@@ -112,6 +112,9 @@ export default function Game({ navigation, route }: GameProps) {
                         <TouchableOpacity onPress={navigation.goBack} style={{ padding: 20 }}>
                             <CaretLeft color={theme.colors.font} />
                         </TouchableOpacity>
+                        <TouchableOpacity onPress={() => console.log(data)} style={{ padding: 20 }}>
+                            <Database color={theme.colors.font} />
+                        </TouchableOpacity>
                         <Font name="seasons" style={[styles.question, styles.noImage]}>{level.question}</Font>
                     </View>
                  )}

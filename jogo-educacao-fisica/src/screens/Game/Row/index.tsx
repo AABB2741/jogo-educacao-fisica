@@ -14,14 +14,14 @@ interface Props {
 
 type status = "correct" | "incorrect" | "misplaced";
 
-export default function Row({ word, guess }: Props) {
+export default function Row({ word, guess, rowNumber }: Props) {
     function createBlocks() {
         let res = [];
 
         for (let i = 0; i < word.length; i++) {
             res.push(
-                <View style={[styles.box, styles.incorrect]}>
-                    <Font name="title">{guess?.[i] ?? ""}</Font>
+                <View style={[styles.box, styles.incorrect]} key={`${rowNumber}-${i}`}>
+                    <Font name="title" style={styles.letter}>{guess?.[i] ?? ""}</Font>
                 </View>
             );
         }

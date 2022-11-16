@@ -18,7 +18,7 @@ export default function Play() {
     return (
         <View style={styles.container}>
             <Header
-                title="As estações"
+                title="TURNO"
                 rightOptions={[{
                     icon: <ChartBar />,
                     onPress: () => null
