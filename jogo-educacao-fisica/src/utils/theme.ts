@@ -12,6 +12,8 @@ export default {
         check: "#069B06",
         warn_background: "#fbff94",
         warn_font: "#f6ff00",
+        err_background: "#FF8C8C",
+        err: "#FF0000",
         desc: "#888888",
         desc2: "#D4D4D4"
     },
@@ -24,6 +26,7 @@ export default {
         desc: "PTSans-Regular",
         desc_italic: "PTSans-Italic",
         obs: "Lato",
-        input: "Rubik"
+        input: "Rubik",
+        button: "Exo2-Bold"
     }
 }

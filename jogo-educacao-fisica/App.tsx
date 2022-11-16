@@ -20,7 +20,8 @@ export default function App() {
 		"Ubuntu": require("./assets/fonts/Ubuntu-Bold.ttf"),
 		"Ubuntu-Regular": require("./assets/fonts/Ubuntu-Regular.ttf"),
 		"Lato": require("./assets/fonts/Lato-Bold.ttf"),
-		"Rubik": require("./assets/fonts/Rubik-VariableFont_wght.ttf")
+		"Rubik": require("./assets/fonts/Rubik-VariableFont_wght.ttf"),
+		"Exo2-Bold": require("./assets/fonts/Exo2-Bold.ttf")
 	});
 
 	const onLayoutRootView = useCallback(async () => {

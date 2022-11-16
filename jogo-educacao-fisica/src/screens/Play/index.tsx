@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
     View,
     Text,
@@ -13,10 +14,17 @@ import Season from "../../components/Season";
 import styles from "./styles";
 import levels from "../../utils/levels";
 import theme from "../../utils/theme";
+import Settings from "./Settings";
 
 export default function Play() {
+    const [settingsOpen, setSettingsOpen] = useState(false);
+
     return (
         <View style={styles.container}>
+            <Settings
+                visible={settingsOpen}
+                onRequestClose={() => setSettingsOpen(false)}
+            />
             <Header
                 title="TURNO"
                 rightOptions={[{
@@ -24,7 +32,7 @@ export default function Play() {
                     onPress: () => null
                 }, {
                     icon: <Gear />,
-                    onPress: () => null
+                    onPress: () => setSettingsOpen(true)
                 }]}
                 credit={{
                     icon: <Sun color={theme.colors.credits} />,
