@@ -1,5 +1,4 @@
 import { LevelProp } from "../interfaces/level";
-import normalize from "./normalize";
 
 const levels = [{
     seasonId: "summer",
@@ -23,6 +22,7 @@ const levels = [{
 }, {
     seasonId: "summer",
     question: "",
+    image: require("../../assets/imgs/levels/3.jpg"),
     words: []
 }, {
     seasonId: "summer",
@@ -53,6 +53,7 @@ const levels = [{
         ...level,
         id,
         get size() {
+            // @ts-ignore
             return level.words.reduce((ac, v) => ac + v.word.length, 0);
         },
     };

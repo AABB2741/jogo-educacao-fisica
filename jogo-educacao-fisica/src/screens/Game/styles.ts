@@ -6,10 +6,30 @@ export default StyleSheet.create({
         flex: 1,
         backgroundColor: theme.colors.background
     },
+    options: {
+        position: "absolute",
+        top: 0,
+        left: 0,
+        right: 0,
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+        padding: 20
+    },
+    questionContainer: {
+        padding: 20,
+        minHeight: 250,
+        backgroundColor: "black",
+        alignItems: "center",
+        justifyContent: "center"
+    },
     question: {
+        color: theme.colors.font2,
+        fontSize: 20
+    },
+    noImage: {
+        color: theme.colors.font,
         textAlign: "center",
-        fontSize: 16,
-        marginTop: 30,
-        color: theme.colors.font
+        paddingVertical: 30
     }
 });

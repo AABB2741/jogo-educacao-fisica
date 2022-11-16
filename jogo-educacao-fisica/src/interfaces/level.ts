@@ -1,3 +1,5 @@
+import { ImageSourcePropType } from "react-native";
+
 export interface WordProps {
     word: string;
     index: number;
@@ -10,7 +12,8 @@ export interface WordProps {
 export interface LevelProp {
     id: number;
     seasonId: seasons;
-    question: string;
+    question?: string;
+    image?: ImageSourcePropType;
     reward?: number;
     words: WordProps[];
     get size(): number;

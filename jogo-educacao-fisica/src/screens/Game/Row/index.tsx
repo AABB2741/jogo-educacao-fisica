@@ -9,6 +9,7 @@ import styles from "./styles";
 interface Props {
     word: string;
     guess: string | undefined;
+    rowNumber: number;
 }
 
 type status = "correct" | "incorrect" | "misplaced";

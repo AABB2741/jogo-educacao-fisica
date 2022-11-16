@@ -6,7 +6,8 @@ import {
     Modal,
     Text,
     TextInput,
-    FlatList
+    FlatList,
+    ImageBackground
 } from "react-native";
 import Header from "../../components/Header";
 import { CaretLeft, Chats, Database, Lightbulb } from "phosphor-react-native";
@@ -96,23 +97,27 @@ export default function Game({ navigation, route }: GameProps) {
                 tries={[] as string[]}
                 data={data}
             />
-            <Header
-                title={`${level.id + 1}. ${level.question}`}
-                leftOptions={[{
-                    icon: <CaretLeft />,
-                    onPress: navigation.goBack
-                }]}
-                rightOptions={[{
-                    icon: <Database />,
-                    onPress: () => console.log(storage)
-                }]}
-                hideFloat
-            />
             <ScrollView contentContainerStyle={{ paddingBottom: 90 }}>
-                <Progress
+                {level.image ? (
+                    <ImageBackground source={require("../../../assets/imgs/levels/3.jpg")} style={styles.questionContainer} imageStyle={{ opacity: 0.7 }}>
+                        <View style={styles.options}>
+                            <TouchableOpacity onPress={navigation.goBack}>
+                                <CaretLeft color={theme.colors.font2} />
+                            </TouchableOpacity>
+                        </View>
+                        <Font name="seasons" style={styles.question}>{level.question}</Font>
+                    </ImageBackground>
+                 ) : ( 
+                    <View>
+                        <TouchableOpacity onPress={navigation.goBack} style={{ padding: 20 }}>
+                            <CaretLeft color={theme.colors.font} />
+                        </TouchableOpacity>
+                        <Font name="seasons" style={[styles.question, styles.noImage]}>{level.question}</Font>
+                    </View>
+                 )}
+                {/* <Progress
                 
-                />
-                <Font name="seasons" style={styles.question}>{level.question}</Font>
+                /> */}
                 <Category subtitle="Dê palpites">
                     <Guess
                         send={handleGuess}
