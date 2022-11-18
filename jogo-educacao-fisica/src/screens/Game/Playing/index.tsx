@@ -32,7 +32,6 @@ export default function Playing({ level, data, word, tries, ...rest }: Props) {
     const [guess, setGuess] = useState("");
     
     let index = level.words.findIndex(w => w.word == word);
-    console.log("Index: " + index);
     
     if (index < 0)
         return null;
