@@ -93,6 +93,7 @@ export default function Game({ navigation, route }: GameProps) {
                 visible={!!playing}
                 onRequestClose={() => setPlaying("")}
                 word={playing}
+                wordId={level.words.find(w => w.word == playing)?.index ?? -1}
                 level={level}
                 tries={[] as string[]}
                 data={data}
