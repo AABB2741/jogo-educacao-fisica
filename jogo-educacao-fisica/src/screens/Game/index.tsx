@@ -107,9 +107,10 @@ export default function Game({ navigation, route }: GameProps) {
                             </TouchableOpacity>
                         </View>
                         <Font name="seasons" style={styles.question}>{level.question}</Font>
+                        <Font name="text" style={styles.infos}>56% concluído ∙ 2/5 palavras encontradas</Font>
                     </ImageBackground>
                  ) : ( 
-                    <View>
+                    <View style={{ paddingBottom: 30 }}>
                         <TouchableOpacity onPress={navigation.goBack} style={{ padding: 20 }}>
                             <CaretLeft color={theme.colors.font} />
                         </TouchableOpacity>
@@ -117,6 +118,7 @@ export default function Game({ navigation, route }: GameProps) {
                             <Database color={theme.colors.font} />
                         </TouchableOpacity>
                         <Font name="seasons" style={[styles.question, styles.noImage]}>{level.question}</Font>
+                        <Font name="text" style={[styles.infos, { color: theme.colors.desc }]}>{`${level.words.filter(w => w.found(data.found ?? [])).reduce((ac, v) => ac + v.percent, 0).toFixed(0)}% concluído ∙ ${data.found?.length}/${level.words.length} ${data.found?.length == 1 ? "palavra encontrada" : "palavras encontradas"}`}</Font>
                     </View>
                  )}
                 {/* <Progress

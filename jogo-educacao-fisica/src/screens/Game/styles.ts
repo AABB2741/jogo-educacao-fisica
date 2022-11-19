@@ -27,9 +27,13 @@ export default StyleSheet.create({
         color: theme.colors.font2,
         fontSize: 20
     },
+    infos: {
+        color: theme.colors.desc2,
+        fontSize: 12,
+        textAlign: "center"
+    },
     noImage: {
         color: theme.colors.font,
-        textAlign: "center",
-        paddingVertical: 30
+        textAlign: "center"
     }
 });
