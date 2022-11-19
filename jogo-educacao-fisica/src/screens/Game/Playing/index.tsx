@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowRight, CheckCircle, Question, X } from "phosphor-react-native";
+import { ArrowRight, CheckCircle, Question, X, XCircle } from "phosphor-react-native";
 import {
     Modal,
     ModalProps,
@@ -39,14 +39,13 @@ export default function Playing({ level, data, word, tries, ...rest }: Props) {
 
     let wordData = level.words[index];
     let found = (data.found ?? []).includes(wordData.index);
+    let limitReach = (data.termoGuesses ?? []).length >= 6;
 
     function handleGuess() {
         if (!data.termoGuesses) {
             data.termoGuesses = [];
         }
 
-        // let newStorage = { ...storage };
-        // console.log(newStorage);
         let levelIndex = storage.levels?.findIndex(l => l.id == level.id) ?? 0;
         let newStorage = { ...storage };
         
@@ -93,12 +92,12 @@ export default function Playing({ level, data, word, tries, ...rest }: Props) {
                 }]}
             />
             <ScrollView style={styles.container}>
-                <View style={[styles.doneContainer, !found && { display: "none" }]}>
+                <View style={[styles.doneContainer, (!found && !limitReach) && { display: "none" }, limitReach && { backgroundColor: theme.colors.err_background }]}>
                     <View style={styles.doneContent}>
-                        <CheckCircle weight="fill" />
-                        <Font name="title" style={styles.done}>Palavra encontrada</Font>
+                        {found ? (<CheckCircle weight="fill" />) : (<XCircle weight="fill" />)}
+                        <Font name="title" style={styles.done}>{found ? "Palavra encontrada" : "Limite atingido de tentativas"}</Font>
                     </View>
-                    <Font name="coins" style={{ color: theme.colors.check }}>{`${wordData.percent.toFixed(0)}%`}</Font>
+                    <Font name="coins" style={{ color: found ? theme.colors.check : theme.colors.err }}>{`${wordData.percent.toFixed(0)}%`}</Font>
                 </View>
                 <View style={styles.questionContainer}>
                     <Font name="seasons">{level.question}</Font>
@@ -106,7 +105,7 @@ export default function Playing({ level, data, word, tries, ...rest }: Props) {
                 <View>
                     {createRows()}
                 </View>
-                <View style={[styles.inputContainer, found && { display: "none" }]}>
+                <View style={[styles.inputContainer, (found || limitReach) && { display: "none" }]}>
                     <TextInput
                         maxLength={word.length}
                         style={styles.input}

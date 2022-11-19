@@ -53,7 +53,6 @@ export default function Row({ word, guess, rowNumber }: Props) {
                 });
                 let foundIndex = remaining.findIndex(r => r.pos == i);
                 remaining.splice(foundIndex, 1);
-                console.log(`Removendo ${letter} do índice ${foundIndex}`)
                 let guessIndex = guessRemaining.findIndex(g => g.pos == i);
                 guessRemaining.splice(guessIndex, 1);
             }
@@ -72,71 +71,9 @@ export default function Row({ word, guess, rowNumber }: Props) {
                     status: "err"
                 })
             }
-            
+
             remaining.splice(remainingIndex, 1);
         }
-
-        // for (let i = 0; i < word.length; i++) {
-        //     console.log(`Sobrantes:`);
-        //     console.log(remaining);
-        //     let letter = normalize(guess?.[i] ?? "").toLowerCase();
-        //     console.log(`Letra: ${letter} -> ${i}`);
-        
-        //     let remainingIndex = remaining.findIndex(r => r.pos == i);
-        //     let remainingLetter = remaining[remainingIndex];
-        //     console.log(`Index encontrado: ${remainingIndex}`);
-        //     if (remainingLetter?.pos == i && remainingLetter.letter == letter) {
-        //         remaining.splice(remainingIndex, 1);
-        //         guessRemaining.splice(i, 1);
-        //         console.log(`Removendo ${letter} -> ${remainingIndex}`);
-        //         res.push({
-        //             letter,
-        //             status: "check",
-        //             pos: i
-        //         });
-        //     }
-        // }
-
-        console.log("\n\n\nLetras sobrando:");
-        // for (let letter of guessRemaining) {
-        //     if (remaining.filter(r => r.letter == letter.letter).length) {
-        //         letter.status = "warn";
-        //     }
-
-        //     console.log(letter);
-        //     res.push({ ...letter });
-        // }
-
-        // for (let letter of letters) {
-        //     let status: Status = "err";
-        //     if (normalizedGuess.includes(letter.letter)) {
-        //         console.log(`${normalizedGuess} inclui ${letter.letter}!`);
-        //         if (normalizedGuess[letter.pos] != letter.letter) {
-        //             console.log(`${normalizedGuess} não inclui ${letter.letter} na posição ${letter.pos}!`);
-        //             status = "warn";
-        //         }
-        //     }
-        //     console.log(`Pushando ${letter.letter} -> ${status}`)
-
-        //     res.push({
-        //         letter: normalizedGuess[letter.pos],
-        //         status,
-        //         pos: letter.pos
-        //     });
-        // }
-
-        // for (let i = 0; i < word.length; i++) {
-        //     let letter = normalize(guess?.[i] ?? "").toLowerCase();
-        //     let status: Status = "err";
-
-            
-
-        //     res.push({
-        //         letter,
-        //         status,
-        //         pos: i
-        //     });
-        // }
 
         return res.sort((a, b) => a.pos > b.pos ? 1 : -1).map(r => (
             <Box
