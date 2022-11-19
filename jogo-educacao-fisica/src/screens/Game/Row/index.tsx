@@ -20,6 +20,7 @@ interface RowProp {
 }
 
 export default function Row({ word, guess, rowNumber }: Props) {
+    const normalizedWord = normalize(word || "").toLowerCase();
     const normalizedGuess = normalize(guess || "").toLowerCase();
 
     function createBlocks() {
@@ -28,7 +29,7 @@ export default function Row({ word, guess, rowNumber }: Props) {
             for (let i = 0; i < word.length; i++) {
                 emptyBlocks.push(
                     <Box
-                        letter=""
+                        letter={i}
                         status="err"
                         key={`${rowNumber}-${i}`}
                     />
@@ -39,32 +40,72 @@ export default function Row({ word, guess, rowNumber }: Props) {
 
         let res: RowProp[] = [];
 
-        let remaining: RowProp[] = word.split("").map((l, pos) => ({ letter: normalize(l).toLowerCase(), pos, status: "err"}));
+        let remaining: RowProp[] = normalizedWord.split("").map((l, pos) => ({ letter: l, pos, status: "err"}));
         let guessRemaining: RowProp[] = normalizedGuess.split("").map((l, pos) => ({ letter: l, pos, status: "err" }));
         for (let i = 0; i < word.length; i++) {
             let letter = normalize(guess?.[i] ?? "").toLowerCase();
-        
-            let remainingLetter = remaining.find(r => r.pos == i);
-            if (remainingLetter?.pos == i && remainingLetter.letter == letter) {
-                remaining.splice(i, 1);
+
+            if (normalizedWord[i] == letter) {
                 res.push({
                     letter,
-                    status: "check",
-                    pos: i
+                    pos: i,
+                    status: "check"
                 });
-                guessRemaining.splice(i, 1);
+                let foundIndex = remaining.findIndex(r => r.pos == i);
+                remaining.splice(foundIndex, 1);
+                console.log(`Removendo ${letter} do índice ${foundIndex}`)
+                let guessIndex = guessRemaining.findIndex(g => g.pos == i);
+                guessRemaining.splice(guessIndex, 1);
             }
         }
 
-        console.log("Letras sobrando:");
         for (let letter of guessRemaining) {
-            if (remaining.filter(r => r.letter == letter.letter).length) {
-                letter.status = "warn";
+            let remainingIndex = remaining.findIndex(r => r.letter == letter.letter);
+            if (remainingIndex != -1) {
+                res.push({
+                    ...letter,
+                    status: "warn"
+                });
+            } else {
+                res.push({
+                    ...letter,
+                    status: "err"
+                })
             }
-
-            console.log(letter);
-            res.push({ ...letter });
+            
+            remaining.splice(remainingIndex, 1);
         }
+
+        // for (let i = 0; i < word.length; i++) {
+        //     console.log(`Sobrantes:`);
+        //     console.log(remaining);
+        //     let letter = normalize(guess?.[i] ?? "").toLowerCase();
+        //     console.log(`Letra: ${letter} -> ${i}`);
+        
+        //     let remainingIndex = remaining.findIndex(r => r.pos == i);
+        //     let remainingLetter = remaining[remainingIndex];
+        //     console.log(`Index encontrado: ${remainingIndex}`);
+        //     if (remainingLetter?.pos == i && remainingLetter.letter == letter) {
+        //         remaining.splice(remainingIndex, 1);
+        //         guessRemaining.splice(i, 1);
+        //         console.log(`Removendo ${letter} -> ${remainingIndex}`);
+        //         res.push({
+        //             letter,
+        //             status: "check",
+        //             pos: i
+        //         });
+        //     }
+        // }
+
+        console.log("\n\n\nLetras sobrando:");
+        // for (let letter of guessRemaining) {
+        //     if (remaining.filter(r => r.letter == letter.letter).length) {
+        //         letter.status = "warn";
+        //     }
+
+        //     console.log(letter);
+        //     res.push({ ...letter });
+        // }
 
         // for (let letter of letters) {
         //     let status: Status = "err";
@@ -99,9 +140,8 @@ export default function Row({ word, guess, rowNumber }: Props) {
 
         return res.sort((a, b) => a.pos > b.pos ? 1 : -1).map(r => (
             <Box
+                { ...r }
                 key={`${rowNumber}-${r.pos}`}
-                letter={r.letter}
-                status={r.status}
             />
         ));
     }
