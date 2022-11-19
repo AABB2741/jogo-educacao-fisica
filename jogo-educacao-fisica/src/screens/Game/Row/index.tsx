@@ -23,30 +23,47 @@ export default function Row({ word, guess, rowNumber }: Props) {
     const normalizedGuess = normalize(guess || "").toLowerCase();
 
     function createBlocks() {
+        if (!guess) {
+            let emptyBlocks = [];
+            for (let i = 0; i < word.length; i++) {
+                emptyBlocks.push(
+                    <Box
+                        letter=""
+                        status="err"
+                        key={`${rowNumber}-${i}`}
+                    />
+                );
+            }
+            return emptyBlocks;
+        }
+
         let res: RowProp[] = [];
 
-        let letters = word.split("").map((l, pos) => ({ letter: normalize(l).toLowerCase(), pos}));
+        let remaining: RowProp[] = word.split("").map((l, pos) => ({ letter: normalize(l).toLowerCase(), pos, status: "err"}));
+        let guessRemaining: RowProp[] = normalizedGuess.split("").map((l, pos) => ({ letter: l, pos, status: "err" }));
         for (let i = 0; i < word.length; i++) {
             let letter = normalize(guess?.[i] ?? "").toLowerCase();
-            let status: Status = "err";
         
-            for (let l in letters) {
-                let j = Number(l);
-                let k = letters[j];
-                if (k.pos == i && k.letter == letter) {
-                    letters.splice(j, 1);
-                    status = "check";
-                    break;
-                }
-            }
-            
-            if (status == "check") {
+            let remainingLetter = remaining.find(r => r.pos == i);
+            if (remainingLetter?.pos == i && remainingLetter.letter == letter) {
+                remaining.splice(i, 1);
                 res.push({
                     letter,
-                    status,
+                    status: "check",
                     pos: i
                 });
+                guessRemaining.splice(i, 1);
             }
+        }
+
+        console.log("Letras sobrando:");
+        for (let letter of guessRemaining) {
+            if (remaining.filter(r => r.letter == letter.letter).length) {
+                letter.status = "warn";
+            }
+
+            console.log(letter);
+            res.push({ ...letter });
         }
 
         // for (let letter of letters) {
