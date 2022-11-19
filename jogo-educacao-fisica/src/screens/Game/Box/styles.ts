@@ -9,7 +9,8 @@ export default StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         borderRadius: 12,
-        marginRight: 10
+        marginRight: 10,
+        maxHeight: 50
     },
     check: {
         backgroundColor: theme.colors.check_background

@@ -4,6 +4,7 @@ export interface WordProps {
     word: string;
     index: number;
     unlock?: number;
+    hidden?: boolean;
     tries: string[];
     get percent(): number;
     found(list: number[]): boolean;

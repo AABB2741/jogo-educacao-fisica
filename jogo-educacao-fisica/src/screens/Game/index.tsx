@@ -128,7 +128,7 @@ export default function Game({ navigation, route }: GameProps) {
                 </Category>
                 <Category noPadding subtitle="Jogo de letras">
                     <WordList
-                        words={level.words}
+                        words={level.words.filter(w => !w.hidden)}
                         data={data}
                         play={setPlaying}
                     />

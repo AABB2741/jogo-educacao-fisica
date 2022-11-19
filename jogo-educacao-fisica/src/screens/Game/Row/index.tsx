@@ -13,34 +13,80 @@ interface Props {
     rowNumber: number;
 }
 
+interface RowProp {
+    letter: string;
+    status: Status;
+    pos: number;
+}
+
 export default function Row({ word, guess, rowNumber }: Props) {
-    const normalized = normalize(word).toLowerCase();
+    const normalizedGuess = normalize(guess || "").toLowerCase();
 
     function createBlocks() {
-        let res = [];
+        let res: RowProp[] = [];
 
+        let letters = word.split("").map((l, pos) => ({ letter: normalize(l).toLowerCase(), pos}));
         for (let i = 0; i < word.length; i++) {
             let letter = normalize(guess?.[i] ?? "").toLowerCase();
             let status: Status = "err";
-
-            if (letter == normalized[i]) {
-                status = "check";
+        
+            for (let l in letters) {
+                let j = Number(l);
+                let k = letters[j];
+                if (k.pos == i && k.letter == letter) {
+                    letters.splice(j, 1);
+                    status = "check";
+                    break;
+                }
             }
-
-            if (normalized.includes(letter) && normalized[i] !== letter && letter) {
-                status = "warn";
+            
+            if (status == "check") {
+                res.push({
+                    letter,
+                    status,
+                    pos: i
+                });
             }
-
-            res.push(
-                <Box
-                    key={`${rowNumber}-${i}`}
-                    letter={letter}
-                    status={status}
-                />
-            );
         }
 
-        return res;
+        // for (let letter of letters) {
+        //     let status: Status = "err";
+        //     if (normalizedGuess.includes(letter.letter)) {
+        //         console.log(`${normalizedGuess} inclui ${letter.letter}!`);
+        //         if (normalizedGuess[letter.pos] != letter.letter) {
+        //             console.log(`${normalizedGuess} não inclui ${letter.letter} na posição ${letter.pos}!`);
+        //             status = "warn";
+        //         }
+        //     }
+        //     console.log(`Pushando ${letter.letter} -> ${status}`)
+
+        //     res.push({
+        //         letter: normalizedGuess[letter.pos],
+        //         status,
+        //         pos: letter.pos
+        //     });
+        // }
+
+        // for (let i = 0; i < word.length; i++) {
+        //     let letter = normalize(guess?.[i] ?? "").toLowerCase();
+        //     let status: Status = "err";
+
+            
+
+        //     res.push({
+        //         letter,
+        //         status,
+        //         pos: i
+        //     });
+        // }
+
+        return res.sort((a, b) => a.pos > b.pos ? 1 : -1).map(r => (
+            <Box
+                key={`${rowNumber}-${r.pos}`}
+                letter={r.letter}
+                status={r.status}
+            />
+        ));
     }
 
     return (
