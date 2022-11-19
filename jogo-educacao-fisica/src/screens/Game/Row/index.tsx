@@ -3,7 +3,7 @@ import {
 } from "react-native";
 import Font from "../../../components/Font";
 import normalize from "../../../utils/normalize";
-import Box from "../Box";
+import Box, { Status } from "../Box";
 
 import styles from "./styles";
 
@@ -13,22 +13,29 @@ interface Props {
     rowNumber: number;
 }
 
-type status = "correct" | "incorrect" | "misplaced";
-
 export default function Row({ word, guess, rowNumber }: Props) {
     const normalized = normalize(word).toLowerCase();
-    console.log(normalized);
 
     function createBlocks() {
         let res = [];
 
         for (let i = 0; i < word.length; i++) {
-            let letter = guess?.[i] ?? "";
+            let letter = normalize(guess?.[i] ?? "").toLowerCase();
+            let status: Status = "err";
+
+            if (letter == normalized[i]) {
+                status = "check";
+            }
+
+            if (normalized.includes(letter) && normalized[i] !== letter && letter) {
+                status = "warn";
+            }
+
             res.push(
                 <Box
                     key={`${rowNumber}-${i}`}
                     letter={letter}
-                    status="err"
+                    status={status}
                 />
             );
         }

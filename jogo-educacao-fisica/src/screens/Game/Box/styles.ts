@@ -9,8 +9,7 @@ export default StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         borderRadius: 12,
-        marginRight: 10,
-        backgroundColor: theme.colors.background2
+        marginRight: 10
     },
     check: {
         backgroundColor: theme.colors.check_background
@@ -18,7 +17,9 @@ export default StyleSheet.create({
     warn: {
         backgroundColor: theme.colors.warn_background
     },
-    err: {},
+    err: {
+        backgroundColor: theme.colors.background2
+    },
     text: {
         fontSize: 16,
         textTransform: "uppercase"

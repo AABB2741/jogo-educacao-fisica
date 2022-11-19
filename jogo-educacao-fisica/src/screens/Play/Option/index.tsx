@@ -11,9 +11,9 @@ interface Props {
     onPress?: () => void;
 }
 
-export default function Option({ icon, label }: Props) {
+export default function Option({ icon, label, onPress }: Props) {
     return (
-        <TouchableOpacity style={styles.container}>
+        <TouchableOpacity style={styles.container} onPress={onPress}>
             { icon }
             <Font name="button" style={styles.label}>{label}</Font>
         </TouchableOpacity>

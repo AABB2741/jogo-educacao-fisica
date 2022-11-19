@@ -13,6 +13,9 @@ import Quests from "../screens/Quests";
 import Font from "../components/Font";
 import theme from "../utils/theme";
 
+export default () => <PlayRoutes />;
+
+/*
 const Tab = createBottomTabNavigator<RootParamList>();
 
 export default function Navigator() {
@@ -63,3 +66,4 @@ export default function Navigator() {
         </Tab.Navigator>
     );
 }
+*/

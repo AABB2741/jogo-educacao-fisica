@@ -31,7 +31,8 @@ export default function Settings({ visible, onRequestClose }: Props) {
                     icon={<Trash color={theme.colors.err} />}
                     label="Excluir dados salvos"
                     onPress={() => {
-                        AsyncStorage.clear().then(() => setStorage({}));
+                        AsyncStorage.setItem("progress", "{}").then(() => setStorage({}));
+                        console.log("Apagando os baguio")
                     }}
                 />
             </View>

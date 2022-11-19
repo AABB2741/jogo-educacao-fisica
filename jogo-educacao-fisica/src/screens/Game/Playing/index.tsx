@@ -19,6 +19,7 @@ import theme from "../../../utils/theme";
 import styles from "./styles";
 import Row from "../Row";
 import { LevelProgress } from "../../../@types/progress";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 interface Props extends ModalProps {
     word: string;
@@ -59,15 +60,17 @@ export default function Playing({ level, data, word, tries, ...rest }: Props) {
             word: guess
         });
 
+        setGuess("");
         newStorage.levels[levelIndex] = newData;
         setStorage(newStorage);
+        AsyncStorage.setItem("progress", JSON.stringify(newStorage));
     }
 
     function createRows() {
         let guesses = data.termoGuesses?.filter(t => t.index == index);
         let res = [];
 
-        for (let i = 0; i < word.length; i++) {
+        for (let i = 0; i < 6; i++) {
             res.push(
                 <Row word={word} guess={guesses?.[i]?.word ?? ""} rowNumber={i} key={i} />
             )

@@ -2,13 +2,10 @@ import {
     TouchableOpacity,
     View
 } from "react-native";
-import { Coins } from "phosphor-react-native";
 
 import Font from "../Font";
 
 import styles from "./styles";
-import theme from "../../utils/theme";
-import { useStorage } from "../../contexts/storage";
 
 interface OptionProps {
     icon: React.ReactNode;
@@ -27,8 +24,6 @@ interface Props {
 }
 
 export default function Header({ title, rightOptions, leftOptions, credit, hideFloat }: Props) {
-    const { coins } = useStorage();
-
     return (
         <View style={styles.container}>
             <View style={styles.optionContainer}>
@@ -46,7 +41,7 @@ export default function Header({ title, rightOptions, leftOptions, credit, hideF
                     </TouchableOpacity>
                 ))}
             </View>
-            {
+            {/* {
                 hideFloat || (
                     <View style={styles.float}>
                         <View style={styles.credits}>
@@ -59,7 +54,7 @@ export default function Header({ title, rightOptions, leftOptions, credit, hideF
                         </View>
                     </View>
                 )
-            }
+            } */}
         </View>
     );
 }
