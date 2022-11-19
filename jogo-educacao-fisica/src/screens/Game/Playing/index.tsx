@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowRight, CheckCircle, Question, X } from "phosphor-react-native";
+import { ArrowRight, CheckCircle, Question, X, XCircle } from "phosphor-react-native";
 import {
     Modal,
     ModalProps,
@@ -105,12 +105,12 @@ export default function Playing({ level, data, word, wordId, tries, ...rest }: P
                 }]}
             />
             <ScrollView style={styles.container}>
-                <View style={[styles.doneContainer, (!found && !limitReach) && { display: "none" }]}>
+                <View style={[styles.doneContainer, (!found && limitReach) && { backgroundColor: theme.colors.err_background }, (!found && !limitReach) && { display: "none" }]}>
                     <View style={styles.doneContent}>
-                        <CheckCircle weight="fill" />
+                        {found ? <CheckCircle weight="fill" /> : <XCircle weight="fill" />}
                         <Font name="title" style={styles.done}>{found ? "Palavra encontrada" : "Limite atingido de tentativas"}</Font>
                     </View>
-                    <Font name="coins" style={{ color: theme.colors.check }}>{`${wordData.percent.toFixed(0)}%`}</Font>
+                    <Font name="coins" style={{ color: found ? theme.colors.check : theme.colors.err }}>{`${wordData.percent.toFixed(0)}%`}</Font>
                 </View>
                 <View style={styles.questionContainer}>
                     <Font name="seasons">{level.question}</Font>
