@@ -13,8 +13,7 @@ const levels = [{
     }, {
         word: "Bom"
     }, {
-        word: "Demais",
-        unlock: 3
+        word: "Demais"
     }]
 }, {
     seasonId: "summer",
@@ -36,7 +35,7 @@ const levels = [{
     }]
 }, {
     seasonId: "summer",
-    question: "No verão, é bom...",
+    question: "O verão é bom para...",
     words: [{
         word: "Exercitar"
     }, {

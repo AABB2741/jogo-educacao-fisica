@@ -29,6 +29,7 @@ export default function WordList({ words, data, play }: Props) {
                 <Word
                     { ...item }
                     wasFound={item.found(data.found || [])}
+                    foundCount={data.found?.length ?? 0}
                     play={play}
                 />
             )}
