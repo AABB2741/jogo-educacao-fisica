@@ -1,4 +1,3 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Trash } from "phosphor-react-native";
 import {
     View
@@ -8,6 +7,7 @@ import Popup from "../../../components/Popup";
 import { useStorage } from "../../../contexts/storage";
 import theme from "../../../utils/theme";
 import Option from "../Option";
+import * as Storage from "../../../utils/storage";
 
 import styles from "./styles";
 
@@ -31,7 +31,7 @@ export default function Settings({ visible, onRequestClose }: Props) {
                     icon={<Trash color={theme.colors.err} />}
                     label="Excluir dados salvos"
                     onPress={() => {
-                        AsyncStorage.setItem("progress", "{}").then(() => setStorage({}));
+                        Storage.setItem("progress", {}).then(() => setStorage({}));
                         console.log("Apagando os baguio")
                     }}
                 />

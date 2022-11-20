@@ -4,7 +4,7 @@ import {
     Text,
     FlatList
 } from "react-native";
-import { Sun, Trash } from "phosphor-react-native";
+import { Eye, Sun, Trash } from "phosphor-react-native";
 
 import seasons from "../../utils/seasons";
 
@@ -19,7 +19,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useStorage } from "../../contexts/storage";
 
 export default function Play() {
-    const { setStorage } = useStorage();
+    const { storage, setStorage } = useStorage();
     const [settingsOpen, setSettingsOpen] = useState(false);
 
     return (
@@ -40,6 +40,11 @@ export default function Play() {
                         AsyncStorage.clear();
                         setStorage({});
                     }
+                }, {
+                    onPress: () => {
+                        console.log(storage);
+                    },
+                    icon: <Eye weight="fill" />
                 }]}
             />
             <FlatList

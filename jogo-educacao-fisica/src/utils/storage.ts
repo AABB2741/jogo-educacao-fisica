@@ -7,6 +7,7 @@ function print(txt: string): void {
 
 export function setItem(key: string, value: object): Promise<void> {
     print(`Definindo dados em ${key}`);
+    console.log(value);
     return AsyncStorage.setItem(key, JSON.stringify(value));
 }
 

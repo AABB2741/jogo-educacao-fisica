@@ -19,7 +19,7 @@ import theme from "../../../utils/theme";
 import styles from "./styles";
 import Row from "../Row";
 import { LevelProgress } from "../../../@types/progress";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as Storage from "../../../utils/storage";
 import normalize from "../../../utils/normalize";
 
 interface Props extends ModalProps {
@@ -46,6 +46,7 @@ export default function Playing({ level, data, word, wordId, tries, ...rest }: P
         if (guess.length < word.length)
             return;
 
+        console.log(`tentando acertar: ${guess}`);
         if (!data.termoGuesses) {
             data.termoGuesses = [];
         }
@@ -71,9 +72,13 @@ export default function Playing({ level, data, word, wordId, tries, ...rest }: P
 
         setGuess("");
         let levelIndex = newStorage.levels.findIndex(l => l.id == level.id);
-        newStorage.levels[levelIndex] = newData;
+        if (levelIndex == -1) {
+            newStorage.levels.push(newData);
+        } else {
+            newStorage.levels[levelIndex] = newData;
+        }
         setStorage(newStorage);
-        AsyncStorage.setItem("progress", JSON.stringify(newStorage));
+        Storage.setItem("progress", newStorage);
     }
 
     function createRows() {

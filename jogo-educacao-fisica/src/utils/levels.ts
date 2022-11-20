@@ -10,15 +10,19 @@ const levels = [{
     }, {
         word: "Estação"
     }, {
-        word: "Vasco" // Bom
+        word: "Bom"
     }, {
         word: "Demais",
         unlock: 3
     }]
 }, {
     seasonId: "summer",
-    question: "",
-    words: []
+    question: "O que podemos aproveitar no verão?",
+    words: [{
+        word: "Férias"
+    }, {
+        word: "Descanso"
+    }]
 }, {
     seasonId: "summer",
     question: "",
