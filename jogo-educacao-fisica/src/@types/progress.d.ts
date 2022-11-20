@@ -11,6 +11,7 @@ export interface LevelProgress {
 }
 
 declare type Progress = {
+    enableHack?: boolean;
     coins?: number;
     suns?: number;
     leaves?: number;

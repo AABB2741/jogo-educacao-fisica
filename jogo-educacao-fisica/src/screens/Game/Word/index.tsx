@@ -1,5 +1,7 @@
+import { useState } from "react";
 import {
     TouchableOpacity,
+    Pressable,
     View
 } from "react-native";
 
@@ -9,6 +11,8 @@ import Font from "../../../components/Font";
 import { Check, CheckCircle, Circle, Keyhole, LockKeyOpen, LockSimple } from "phosphor-react-native";
 import theme from "../../../utils/theme";
 import { WordProps } from "../../../interfaces/level";
+import { useStorage } from "../../../contexts/storage";
+import Popup from "../../../components/Popup";
 
 interface Props extends WordProps {
     wasFound: boolean;
@@ -17,11 +21,21 @@ interface Props extends WordProps {
 }
 
 export default function Word({ word, index, percent, foundCount, wasFound, unlock, play }: Props) {
+    const { storage } = useStorage();
+    const [reveal, setReveal] = useState(false);
     let unlocked = foundCount >= (unlock ?? 0);
 
     if (!unlocked) {
         return (
-            <View style={styles.container}>
+            <Pressable onLongPress={() => setReveal(true)} style={styles.container}>
+                {storage.enableHack && (
+                    <Popup
+                        title={`Palavra #${index} ∙ ${percent.toFixed(2).replace(".", ",")}% ∙ (bloqueada)`}
+                        desc={word}
+                        visible={reveal}
+                        onRequestClose={() => setReveal(false)}
+                    />
+                )}
                 <View style={styles.lock}>
                     { wasFound ? <Keyhole size={28} color={theme.colors.accent} weight="fill" /> : <Keyhole size={28} color={theme.colors.font} /> }
                     <Font name="title" style={styles.lockRequirements}>{`${foundCount}/${unlock ?? 0}`}</Font>
@@ -29,12 +43,20 @@ export default function Word({ word, index, percent, foundCount, wasFound, unloc
                 <View style={styles.barContainer}>
                     <View style={[styles.bar, { width: `${percent}%` }]}></View>
                 </View>
-            </View>
+            </Pressable>
         );
     }
 
     return (
-        <TouchableOpacity style={styles.container} onPress={() => play(word)}>
+        <TouchableOpacity style={styles.container} onPress={() => play(word)} onLongPress={() => setReveal(true)}>
+            {storage.enableHack && (
+                <Popup
+                    title={`Palavra #${index} ∙ ${percent.toFixed(2).replace(".", ",")}%`}
+                    desc={word}
+                    visible={reveal}
+                    onRequestClose={() => setReveal(false)}
+                />
+            )}
             <View style={styles.statusContainer}>
                 <Font name="coins" style={[styles.percent, { color: wasFound ? theme.colors.accent : theme.colors.font }]}>{`${percent.toFixed(0)}%`}</Font>
                 { wasFound ? (

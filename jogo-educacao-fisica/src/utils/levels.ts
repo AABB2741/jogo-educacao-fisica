@@ -172,7 +172,11 @@ const levels = [{
     seasonId: "winter",
     question: "O que usar no inverno?",
     words: [{
-        word: "Blusa"
+        word: "Blusa",
+        alias: [
+            "Roupa",
+            "Jaqueta"
+        ]
     }, {
         word: "Luvas"
     }, {

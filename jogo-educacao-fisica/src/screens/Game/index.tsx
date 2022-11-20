@@ -113,18 +113,22 @@ export default function Game({ navigation, route }: GameProps) {
                             <TouchableOpacity onPress={navigation.goBack}>
                                 <CaretLeft color={theme.colors.font2} />
                             </TouchableOpacity>
+                            {storage.enableHack && <Font name="seasons" style={styles.hack}>Trapaça ativada</Font>}
                         </View>
                         <Font name="seasons" style={styles.question}>{level.question}</Font>
                         <Font name="text" style={[styles.infos, { color: theme.colors.font2 }]}>{`${level.words.filter(w => w.found(data.found ?? [])).reduce((ac, v) => ac + v.percent, 0).toFixed(0)}% concluído ∙ ${data.found?.length ?? 0}/${level.words.length} ${data.found?.length == 1 ? "palavra encontrada" : "palavras encontradas"}`}</Font>
                     </ImageBackground>
-                 ) : ( 
-                    <View style={{ paddingBottom: 30 }}>
-                        <TouchableOpacity onPress={navigation.goBack} style={{ padding: 20 }}>
-                            <CaretLeft color={theme.colors.font} />
-                        </TouchableOpacity>
-                        <Font name="seasons" style={[styles.question, styles.noImage]}>{level.question}</Font>
-                        <Font name="text" style={[styles.infos, { color: theme.colors.desc }]}>{`${level.words.filter(w => w.found(data.found ?? [])).reduce((ac, v) => ac + v.percent, 0).toFixed(0)}% concluído ∙ ${data.found?.length ?? 0}/${level.words.length} ${data.found?.length == 1 ? "palavra encontrada" : "palavras encontradas"}`}</Font>
-                    </View>
+                 ) : (
+                    <>
+                        {storage.enableHack && <Font name="seasons" style={[styles.hack, styles.float]}>Trapaça ativada</Font>}
+                        <View style={{ paddingBottom: 30 }}>
+                            <TouchableOpacity onPress={navigation.goBack} style={{ padding: 20 }}>
+                                <CaretLeft color={theme.colors.font} />
+                            </TouchableOpacity>
+                            <Font name="seasons" style={[styles.question, styles.noImage]}>{level.question}</Font>
+                            <Font name="text" style={[styles.infos, { color: theme.colors.desc }]}>{`${level.words.filter(w => w.found(data.found ?? [])).reduce((ac, v) => ac + v.percent, 0).toFixed(0)}% concluído ∙ ${data.found?.length ?? 0}/${level.words.length} ${data.found?.length == 1 ? "palavra encontrada" : "palavras encontradas"}`}</Font>
+                        </View>
+                    </>
                  )}
                 {/* <Progress
                 

@@ -16,6 +16,16 @@ export default StyleSheet.create({
         justifyContent: "space-between",
         padding: 20
     },
+    hack: {
+        color: theme.colors.err,
+        textTransform: "uppercase",
+        fontSize: 14
+    },
+    float: {
+        position: "absolute",
+        right: 0,
+        padding: 20
+    },
     questionContainer: {
         padding: 20,
         minHeight: 250,

@@ -1,6 +1,7 @@
 import {
     Image,
     ImageSourcePropType,
+    Pressable,
     TouchableOpacity,
     View
 } from "react-native";
@@ -17,6 +18,7 @@ interface OptionProps {
 interface Props {
     title?: string;
     icon?: ImageSourcePropType;
+    onPressIcon?: () => void;
     leftOptions?: OptionProps[];
     rightOptions?: OptionProps[];
     hideFloat?: boolean;
@@ -26,7 +28,7 @@ interface Props {
     }
 }
 
-export default function Header({ title, icon, rightOptions, leftOptions, credit, hideFloat }: Props) {
+export default function Header({ title, icon, onPressIcon, rightOptions, leftOptions, credit, hideFloat }: Props) {
     return (
         <View style={styles.container}>
             <View style={styles.optionContainer}>
@@ -35,7 +37,11 @@ export default function Header({ title, icon, rightOptions, leftOptions, credit,
                         {option.icon}
                     </TouchableOpacity>
                 ))}
-                { icon && <Image source={icon} style={styles.icon} resizeMode="contain" /> }
+                { icon && (
+                    <Pressable onPress={onPressIcon}>
+                        <Image source={icon} style={styles.icon} resizeMode="contain" />
+                    </Pressable>
+                )}
                 <Font name="title" numberOfLines={1} style={styles.title}>{title}</Font>
             </View>
             <View style={styles.optionContainer}>
