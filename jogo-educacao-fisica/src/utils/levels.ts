@@ -10,7 +10,7 @@ const levels = [{
     }, {
         word: "Estação"
     }, {
-        word: "Bom"
+        word: "Vasco" // Bom
     }, {
         word: "Demais",
         unlock: 3
@@ -48,6 +48,16 @@ const levels = [{
     seasonId: "summer",
     question: "",
     words: []
+}, {
+    seasonId: "winter",
+    question: "O que usar no inverno?",
+    words: [{
+        word: "Blusa"
+    }, {
+        word: "Luvas"
+    }, {
+        word: "Touca"
+    }]
 }].map((level, id) => {
     return {
         ...level,

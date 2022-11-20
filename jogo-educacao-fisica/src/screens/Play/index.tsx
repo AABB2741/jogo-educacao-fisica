@@ -4,7 +4,7 @@ import {
     Text,
     FlatList
 } from "react-native";
-import { Sun } from "phosphor-react-native";
+import { Sun, Trash } from "phosphor-react-native";
 
 import seasons from "../../utils/seasons";
 
@@ -15,8 +15,11 @@ import styles from "./styles";
 import levels from "../../utils/levels";
 import theme from "../../utils/theme";
 import Settings from "./Settings";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useStorage } from "../../contexts/storage";
 
 export default function Play() {
+    const { setStorage } = useStorage();
     const [settingsOpen, setSettingsOpen] = useState(false);
 
     return (
@@ -31,6 +34,13 @@ export default function Play() {
                     icon: <Sun color={theme.colors.credits} />,
                     count: 1190
                 }}
+                rightOptions={[{
+                    icon: <Trash weight="fill" />,
+                    onPress: () => {
+                        AsyncStorage.clear();
+                        setStorage({});
+                    }
+                }]}
             />
             <FlatList
                 contentContainerStyle={{ paddingTop: 50, borderBottomWidth: 100, borderBottomColor: seasons.find(s => s.id == "spring")?.color }}

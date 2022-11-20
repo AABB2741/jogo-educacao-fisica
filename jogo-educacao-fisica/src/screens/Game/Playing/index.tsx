@@ -38,7 +38,6 @@ export default function Playing({ level, data, word, wordId, tries, ...rest }: P
     
     if (index < 0)
         return null;
-    console.log(`[${wordId}]: ${word}`)
     let wordData = level.words[index];
     let found = (data.found ?? []).includes(wordData.index);
     let limitReach = (data.termoGuesses ?? []).filter(t => t.index == index).length >= 6;
@@ -51,13 +50,11 @@ export default function Playing({ level, data, word, wordId, tries, ...rest }: P
             data.termoGuesses = [];
         }
 
-        // let newStorage = { ...storage };
-        // console.log(newStorage);
-        let levelIndex = storage.levels?.findIndex(l => l.id == level.id) ?? 0;
+        // let levelIndex = storage.levels?.findIndex(l => l.id == level.id) ?? -1;
         let newStorage = { ...storage };
         
         if (!newStorage.levels) {
-            newStorage.levels = [level];
+            newStorage.levels = [data];
         }
 
         let newData = { ...data };
@@ -73,6 +70,7 @@ export default function Playing({ level, data, word, wordId, tries, ...rest }: P
         }
 
         setGuess("");
+        let levelIndex = newStorage.levels.findIndex(l => l.id == level.id);
         newStorage.levels[levelIndex] = newData;
         setStorage(newStorage);
         AsyncStorage.setItem("progress", JSON.stringify(newStorage));

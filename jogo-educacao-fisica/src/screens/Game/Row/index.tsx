@@ -58,21 +58,30 @@ export default function Row({ word, guess, rowNumber }: Props) {
             }
         }
 
+        // console.log("\n\n\nletras sobrantes:");
+        // console.log(remaining);
+        // console.log("Letras do chute:");
+        // console.log(guessRemaining)
         for (let letter of guessRemaining) {
-            let remainingIndex = remaining.findIndex(r => r.letter == letter.letter);
+            // console.log(`Na letra ${letter.letter}:`)
+            let remainingIndex = remaining.findIndex(r => {
+                // console.log(`   ${r.letter} == ${letter.letter} -> ${r.letter == letter.letter}`)
+                return r.letter == letter.letter;
+            });
+            // console.log(`   Letra "${letter.letter}" em índice "${remainingIndex}`);
             if (remainingIndex != -1) {
                 res.push({
                     ...letter,
                     status: "warn"
                 });
+                remaining.splice(remainingIndex, 1);
             } else {
                 res.push({
                     ...letter,
                     status: "err"
                 })
             }
-
-            remaining.splice(remainingIndex, 1);
+            // console.log(" ");
         }
 
         return res.sort((a, b) => a.pos > b.pos ? 1 : -1).map(r => (

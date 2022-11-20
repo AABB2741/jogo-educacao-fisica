@@ -50,7 +50,9 @@ export default function Game({ navigation, route }: GameProps) {
     let data: LevelProgress = {
         ...(storage.levels?.find(l => l.id == level.id) ?? { id: level.id })
     }
+
     function handleGuess(guess: string) {
+        console.log(`Palpite: ${guess}`);
         if (!level)
             return;
 
@@ -99,6 +101,9 @@ export default function Game({ navigation, route }: GameProps) {
                 data={data}
             />
             <ScrollView contentContainerStyle={{ paddingBottom: 90 }}>
+                <TouchableOpacity onPress={() => console.log(data)}>
+                    <Database />
+                </TouchableOpacity>
                 {level.image ? (
                     <ImageBackground source={require("../../../assets/imgs/levels/3.jpg")} style={styles.questionContainer} imageStyle={{ opacity: 0.7 }}>
                         <View style={styles.options}>
