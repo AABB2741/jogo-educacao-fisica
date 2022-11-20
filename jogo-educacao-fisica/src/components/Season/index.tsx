@@ -10,12 +10,15 @@ import styles from "./styles";
 
 import Level from "../Level";
 import SeasonProp from "../../interfaces/season";
+import { useStorage } from "../../contexts/storage";
 
 interface Props extends SeasonProp {
 
 }
 
 export default function Season({ id, name, desc, color, image, levels }: Props) {
+    const { storage } = useStorage();
+
     return (
         <View style={[styles.container, {backgroundColor: color}]}>
             <View style={styles.presentation}>
@@ -33,7 +36,13 @@ export default function Season({ id, name, desc, color, image, levels }: Props) 
             </View>
             <View style={styles.levels}>
                 {levels.map((level, i) => (
-                    <Level name={i+1} id={level.id} icon={<Sun size={16} weight="fill" />} key={level.id} />
+                    <Level
+                        name={i+1}
+                        id={level.id}
+                        icon={<Sun size={16} weight="fill" />}
+                        done={((storage.levels ?? []).find(l => l.id == level.id)?.found ?? []).length >= level.words.length}
+                        key={level.id}
+                    />
                 ))}
             </View>
         </View>
