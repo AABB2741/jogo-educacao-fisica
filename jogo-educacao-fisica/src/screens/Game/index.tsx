@@ -106,7 +106,7 @@ export default function Game({ navigation, route }: GameProps) {
                 tries={[] as string[]}
                 data={data}
             />
-            <ScrollView contentContainerStyle={{ paddingBottom: 90 }}>
+            <ScrollView>
                 {level.image ? (
                     <ImageBackground source={level.image} style={styles.questionContainer} imageStyle={{ opacity: 0.7 }}>
                         <View style={styles.options}>

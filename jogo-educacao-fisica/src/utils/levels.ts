@@ -158,7 +158,7 @@ const levels = [{
     seasonId: "summer",
     question: "No verão, pode ser um problema...",
     words: [{
-        word: "Desidratação"
+        word: "Seca"
     }, {
         word: "Calor"
     }, {
@@ -177,6 +177,18 @@ const levels = [{
         word: "Luvas"
     }, {
         word: "Touca"
+    }]
+}, {
+    seasonId: "falls",
+    question: "O que eu mais sei fazer?",
+    words: [{
+        word: "Clicar"
+    }]
+}, {
+    seasonId: "spring",
+    question: "Quem é sua prima?",
+    words: [{
+        word: "Vera"
     }]
 }].map((level, id) => {
     return {

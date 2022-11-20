@@ -11,6 +11,10 @@ export default StyleSheet.create({
         justifyContent: "space-between",
         zIndex: 1
     },
+    icon: {
+        height: 24,
+        width: 125
+    },
     title: {
         fontSize: 16,
         color: theme.colors.font

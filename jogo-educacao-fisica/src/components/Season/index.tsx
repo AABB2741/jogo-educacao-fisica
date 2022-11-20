@@ -4,7 +4,7 @@ import {
     ImageSourcePropType
 } from "react-native";
 import Font from "../Font";
-import { Sun } from "phosphor-react-native";
+import { Flower, Leaf, Snowflake, Sun } from "phosphor-react-native";
 
 import styles from "./styles";
 
@@ -18,6 +18,19 @@ interface Props extends SeasonProp {
 
 export default function Season({ id, name, desc, color, image, levels }: Props) {
     const { storage } = useStorage();
+
+    function getIcon(icon: seasons) {
+        switch(icon) {
+            case "summer":
+                return <Sun size={16} weight="fill" />;
+            case "falls":
+                return <Leaf size={16} weight="fill" />
+            case "winter":
+                return <Snowflake size={16} weight="fill" />
+            case "spring":
+                return <Flower size={16} weight="fill" />
+        }
+    }
 
     return (
         <View style={[styles.container, {backgroundColor: color}]}>
@@ -35,7 +48,7 @@ export default function Season({ id, name, desc, color, image, levels }: Props) 
                     <Level
                         name={i+1}
                         id={level.id}
-                        icon={<Sun size={16} weight="fill" />}
+                        icon={getIcon(level.seasonId)}
                         done={((storage.levels ?? []).find(l => l.id == level.id)?.found ?? []).length >= level.words.length}
                         key={level.id}
                     />

@@ -1,4 +1,6 @@
 import {
+    Image,
+    ImageSourcePropType,
     TouchableOpacity,
     View
 } from "react-native";
@@ -14,6 +16,7 @@ interface OptionProps {
 
 interface Props {
     title?: string;
+    icon?: ImageSourcePropType;
     leftOptions?: OptionProps[];
     rightOptions?: OptionProps[];
     hideFloat?: boolean;
@@ -23,7 +26,7 @@ interface Props {
     }
 }
 
-export default function Header({ title, rightOptions, leftOptions, credit, hideFloat }: Props) {
+export default function Header({ title, icon, rightOptions, leftOptions, credit, hideFloat }: Props) {
     return (
         <View style={styles.container}>
             <View style={styles.optionContainer}>
@@ -32,6 +35,7 @@ export default function Header({ title, rightOptions, leftOptions, credit, hideF
                         {option.icon}
                     </TouchableOpacity>
                 ))}
+                { icon && <Image source={icon} style={styles.icon} resizeMode="contain" /> }
                 <Font name="title" numberOfLines={1} style={styles.title}>{title}</Font>
             </View>
             <View style={styles.optionContainer}>
