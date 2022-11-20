@@ -98,11 +98,36 @@ const levels = [{
     seasonId: "summer",
     question: "",
     image: require("../../assets/imgs/levels/5.jpg"),
-    words: []
+    words: [{
+        word: "Calor"
+    }, {
+        word: "Multidão",
+        alias: [
+            "Lotado",
+            "Cheio"
+        ]
+    }, {
+        word: "Prédio",
+        alias: [
+            "Prédios"
+        ]
+    }]
 }, {
     seasonId: "summer",
     question: "",
-    words: []
+    image: require("../../assets/imgs/levels/6.jpg"),
+    words: [{
+        word: "Avião"
+    }, {
+        word: "Viagem",
+        alias: [
+            "Passeio"
+        ]
+    }, {
+        word: "Turismo"
+    }, {
+        word: "Férias"
+    }]
 }, {
     seasonId: "summer",
     question: "É uma ótima maneira de se refrescar no verão",
@@ -131,8 +156,14 @@ const levels = [{
     }]
 }, {
     seasonId: "summer",
-    question: "",
-    words: []
+    question: "No verão, pode ser um problema...",
+    words: [{
+        word: "Desidratação"
+    }, {
+        word: "Calor"
+    }, {
+        word: ""
+    }]
 }, {
     seasonId: "summer",
     question: "",
