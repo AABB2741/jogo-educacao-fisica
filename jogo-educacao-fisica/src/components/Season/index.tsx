@@ -30,10 +30,6 @@ export default function Season({ id, name, desc, color, image, levels }: Props) 
                     <Font name="desc" style={styles.seasonDesc}>{desc}</Font>
                 </View>
             </View>
-            <View style={styles.doneCount}>
-                <Font name="title" style={styles.doneLevels}>{`0/${levels.length}`}</Font>
-                <Font name="subtitle" style={styles.totalLevels}>níveis concluídos</Font>
-            </View>
             <View style={styles.levels}>
                 {levels.map((level, i) => (
                     <Level

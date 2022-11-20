@@ -25,18 +25,6 @@ export default StyleSheet.create({
     seasonDesc: {
         fontSize: 14
     },
-    doneCount: {
-        flexDirection: "row",
-        alignItems: "flex-end",
-        marginTop: 20
-    },
-    doneLevels: {
-        fontSize: 16
-    },
-    totalLevels: {
-        fontSize: 14,
-        marginLeft: 5
-    },
     levels: {
         marginTop: 10,
         flexDirection: "row",
