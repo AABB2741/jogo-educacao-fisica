@@ -21,6 +21,7 @@ import Row from "../Row";
 import { LevelProgress } from "../../../@types/progress";
 import * as Storage from "../../../utils/storage";
 import normalize from "../../../utils/normalize";
+import { carve } from "../../../utils/characters";
 
 interface Props extends ModalProps {
     word: string;
@@ -33,6 +34,7 @@ interface Props extends ModalProps {
 export default function Playing({ level, data, word, wordId, tries, ...rest }: Props) {
     const { storage, setStorage } = useStorage();
     const [guess, setGuess] = useState("");
+    const [error, setError] = useState(false);
     
     let index = level.words.findIndex(w => w.word == word);
     
@@ -43,10 +45,12 @@ export default function Playing({ level, data, word, wordId, tries, ...rest }: P
     let limitReach = (data.termoGuesses ?? []).filter(t => t.index == index).length >= 6;
 
     function handleGuess() {
-        if (guess.length < word.length)
+        if (guess.length < word.length) {
+            setError(true);
             return;
+        }
 
-        console.log(`tentando acertar: ${guess}`);
+        setError(false);
         if (!data.termoGuesses) {
             data.termoGuesses = [];
         }
@@ -121,13 +125,14 @@ export default function Playing({ level, data, word, wordId, tries, ...rest }: P
                 <View>
                     {createRows()}
                 </View>
+                <Font name="desc" style={[styles.error, !error && { display: "none" }]}>{`Insira uma palavra com ${word.length} ${word.length == 1 ? "caractere" : "caracteres"}`}</Font>
                 <View style={[styles.inputContainer, (found || limitReach) && { display: "none" }]}>
                     <TextInput
                         maxLength={word.length}
                         style={styles.input}
                         placeholder="O que você está pensando?"
                         value={guess}
-                        onChangeText={text => setGuess(text)}
+                        onChangeText={text => setGuess(carve({ text }))}
                         onSubmitEditing={handleGuess}
                     />
                     <TouchableOpacity style={styles.submit} onPress={handleGuess}>

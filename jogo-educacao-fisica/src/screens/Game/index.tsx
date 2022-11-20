@@ -52,7 +52,6 @@ export default function Game({ navigation, route }: GameProps) {
     }
 
     function handleGuess(guess: string) {
-        console.log(`Palpite: ${guess}`);
         if (!level)
             return;
 
@@ -71,6 +70,13 @@ export default function Game({ navigation, route }: GameProps) {
         let hasFound = false;
         for (let w of level.words) {
             if (normalize(w.word).toLowerCase() == normalize(guess).toLowerCase()) {
+                if (!data.found.includes(w.index)) {
+                    data.found.push(w.index);
+                    hasFound = true;
+                    break;
+                } else return;
+            }
+            if ((w.alias ?? []).includes(normalize(guess).toLowerCase())) {
                 if (!data.found.includes(w.index)) {
                     data.found.push(w.index);
                     hasFound = true;
@@ -101,7 +107,7 @@ export default function Game({ navigation, route }: GameProps) {
                 data={data}
             />
             <ScrollView contentContainerStyle={{ paddingBottom: 90 }}>
-                <TouchableOpacity onPress={() => console.log(data)}>
+                <TouchableOpacity onPress={() => console.log(level)}>
                     <Database />
                 </TouchableOpacity>
                 {level.image ? (

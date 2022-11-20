@@ -3,6 +3,7 @@ import { ImageSourcePropType } from "react-native";
 export interface WordProps {
     word: string;
     index: number;
+    alias?: string[];
     unlock?: number;
     hidden?: boolean;
     tries: string[];

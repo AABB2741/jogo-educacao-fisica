@@ -32,6 +32,12 @@ export default StyleSheet.create({
         color: theme.colors.font,
         fontSize: 16
     },
+    error: {
+        fontSize: 14,
+        textAlign: "center",
+        marginVertical: 10,
+        color: theme.colors.err
+    },
     inputContainer: {
         flexDirection: "row",
         alignItems: "stretch",

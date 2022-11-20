@@ -1,4 +1,5 @@
 import { LevelProp } from "../interfaces/level";
+import normalize from "./normalize";
 
 const levels = [{
     seasonId: "summer",
@@ -22,6 +23,14 @@ const levels = [{
         word: "Férias"
     }, {
         word: "Descanso"
+    }, {
+        word: "Praia"
+    }, {
+        word: "Piscina",
+        alias: [
+            "Nadar",
+            "Natação"
+        ]
     }]
 }, {
     seasonId: "summer",
@@ -75,6 +84,8 @@ const levels = [{
     level.words = level.words.map((word, index) => ({
         ...word,
         index: index + 1,
+        // @ts-ignore
+        alias: (word?.alias ?? []).map(a => normalize(a).toLowerCase()),
         get percent() {
             return word.word.length / level.size * 100;
         },
