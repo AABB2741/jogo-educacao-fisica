@@ -4,7 +4,7 @@ import {
     Text,
     FlatList
 } from "react-native";
-import { ChartBar, Gear, Sun } from "phosphor-react-native";
+import { Sun } from "phosphor-react-native";
 
 import seasons from "../../utils/seasons";
 
@@ -27,13 +27,6 @@ export default function Play() {
             />
             <Header
                 title="TURNO"
-                rightOptions={[{
-                    icon: <ChartBar />,
-                    onPress: () => null
-                }, {
-                    icon: <Gear />,
-                    onPress: () => setSettingsOpen(true)
-                }]}
                 credit={{
                     icon: <Sun color={theme.colors.credits} />,
                     count: 1190
