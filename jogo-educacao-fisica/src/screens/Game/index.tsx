@@ -108,7 +108,7 @@ export default function Game({ navigation, route }: GameProps) {
             />
             <ScrollView contentContainerStyle={{ paddingBottom: 90 }}>
                 {level.image ? (
-                    <ImageBackground source={require("../../../assets/imgs/levels/3.jpg")} style={styles.questionContainer} imageStyle={{ opacity: 0.7 }}>
+                    <ImageBackground source={level.image} style={styles.questionContainer} imageStyle={{ opacity: 0.7 }}>
                         <View style={styles.options}>
                             <TouchableOpacity onPress={navigation.goBack}>
                                 <CaretLeft color={theme.colors.font2} />

@@ -63,7 +63,7 @@ const levels = [{
     }]
 }, {
     seasonId: "summer",
-    image: require("../../assets/imgs/levels/3.jpg"),
+    image: require("../../assets/imgs/levels/4.jpg"),
     words: [{
         word: "Praia"
     }, {
@@ -96,11 +96,23 @@ const levels = [{
     }]
 }, {
     seasonId: "summer",
-    question: "O que fazer para se refrescar no verão?",
+    question: "",
+    image: require("../../assets/imgs/levels/5.jpg"),
+    words: []
+}, {
+    seasonId: "summer",
+    question: "",
+    words: []
+}, {
+    seasonId: "summer",
+    question: "É uma ótima maneira de se refrescar no verão",
     words: [{
-        word: "Suco"
+        word: "Banho"
     }, {
-        word: "Ventilador"
+        word: "Ventilador",
+        alias: [
+            "Ar"
+        ]
     }, {
         word: "Nadar",
         alias: [
@@ -108,18 +120,15 @@ const levels = [{
             "Praia"
         ]
     }, {
-        word: ""
+        word: "Hidratar",
+        unlock: 2
     }, {
-        word: ""
+        word: "Sorvete",
+        unlock: 3,
+        alias: [
+            "Gelo"
+        ]
     }]
-}, {
-    seasonId: "summer",
-    question: "",
-    words: []
-}, {
-    seasonId: "summer",
-    question: "",
-    words: []
 }, {
     seasonId: "summer",
     question: "",

@@ -8,6 +8,7 @@ SplashScreen.preventAutoHideAsync();
 
 import AppRoutes from "./src/routes/app.routes";
 import StorageProvider from "./src/contexts/storage";
+import Loading from "./src/components/Loading";
 
 export default function App() {
 	const [fontsLoaded] = useFonts({
@@ -30,7 +31,7 @@ export default function App() {
 	}, [fontsLoaded])
 
 	if (!fontsLoaded)
-		return null;
+		return <Loading />;
 
 	return (
 		<View style={{ flex: 1 }} onLayout={onLayoutRootView}>
