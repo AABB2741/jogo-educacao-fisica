@@ -166,8 +166,45 @@ const levels = [{
     }]
 }, {
     seasonId: "summer",
-    question: "",
-    words: []
+    question: "Importante levar para a praia",
+    words: [{
+        word: "Roupa",
+        alias: [
+            "Roupas"
+        ],
+        unlock: 2
+    }, {
+        word: "Acessório",
+        alias: [
+            "Acessórios",
+            "Chapéu",
+            "Boné",
+            "Chinelo",
+            "Óculos"
+        ]
+    }, {
+        word: "Protetor",
+        alias: [
+            "Protetor solar",
+            "Creme solar",
+            "Protetor labial"
+        ],
+        unlock: 1
+    }, {
+        word: "Água",
+        alias: [
+            "Garrafa",
+            "Bebida"
+        ],
+        unlock: 3
+    }, {
+        word: "Comida",
+        alias: [
+            "Comidas",
+            "Carne",
+            "Almoço"
+        ]
+    }]
 }, {
     seasonId: "winter",
     question: "O que usar no inverno?",

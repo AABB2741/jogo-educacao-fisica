@@ -23,11 +23,12 @@ interface Props extends WordProps {
 export default function Word({ word, index, percent, foundCount, wasFound, unlock, play }: Props) {
     const { storage } = useStorage();
     const [reveal, setReveal] = useState(false);
+    const [showLockHint, setShowLockHint] = useState(false);
     let unlocked = foundCount >= (unlock ?? 0);
 
     if (!unlocked) {
         return (
-            <Pressable onLongPress={() => setReveal(true)} style={styles.container}>
+            <Pressable onPress={() => setShowLockHint(true)} onLongPress={() => setReveal(true)} style={styles.container}>
                 {storage.enableHack && (
                     <Popup
                         title={`Palavra #${index} ∙ ${percent.toFixed(2).replace(".", ",")}% ∙ (bloqueada)`}
@@ -36,6 +37,12 @@ export default function Word({ word, index, percent, foundCount, wasFound, unloc
                         onRequestClose={() => setReveal(false)}
                     />
                 )}
+                <Popup
+                    title="Palavra bloqueada"
+                    desc={`Para jogar este jogo de letras, é necessário que você encontre ${unlock} ${unlock == 1 ? "palavra" : "palavras"} antes!`}
+                    visible={showLockHint}
+                    onRequestClose={() => setShowLockHint(false)}
+                />
                 <View style={styles.lock}>
                     { wasFound ? <Keyhole size={28} color={theme.colors.accent} weight="fill" /> : <Keyhole size={28} color={theme.colors.font} /> }
                     <Font name="title" style={styles.lockRequirements}>{`${foundCount}/${unlock ?? 0}`}</Font>
