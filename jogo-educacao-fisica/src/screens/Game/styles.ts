@@ -24,7 +24,9 @@ export default StyleSheet.create({
         justifyContent: "center"
     },
     question: {
+        textTransform: "uppercase",
         color: theme.colors.font2,
+        paddingHorizontal: 20,
         fontSize: 20
     },
     infos: {

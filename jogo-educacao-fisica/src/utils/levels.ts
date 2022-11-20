@@ -18,7 +18,7 @@ const levels = [{
     }]
 }, {
     seasonId: "summer",
-    question: "O que podemos aproveitar no verão?",
+    question: "O que podemos aproveitar do verão?",
     words: [{
         word: "Férias"
     }, {
@@ -33,6 +33,34 @@ const levels = [{
         ]
     }, {
         word: "Sol"
+    }]
+}, {
+    seasonId: "summer",
+    question: "No verão, é bom...",
+    words: [{
+        word: "Exercitar"
+    }, {
+        word: "Caminhar",
+        alias: [
+            "Caminhar",
+            "Passear"
+        ]
+    }, {
+        word: "Cinema",
+        alias: [
+            "Assistir"
+        ]
+    }, {
+        word: "Refrescar",
+        alias: [
+            "Beber"
+        ]
+    }, {
+        word: "Churrasco",
+        alias: [
+            "Comer",
+            "Festa"
+        ]
     }]
 }, {
     seasonId: "summer",
@@ -69,12 +97,22 @@ const levels = [{
     }]
 }, {
     seasonId: "summer",
-    question: "",
-    words: []
-}, {
-    seasonId: "summer",
-    question: "",
-    words: []
+    question: "O que fazer para se refrescar no verão?",
+    words: [{
+        word: "Suco"
+    }, {
+        word: "Ventilador"
+    }, {
+        word: "Nadar",
+        alias: [
+            "Piscina",
+            "Praia"
+        ]
+    }, {
+        word: ""
+    }, {
+        word: ""
+    }]
 }, {
     seasonId: "summer",
     question: "",

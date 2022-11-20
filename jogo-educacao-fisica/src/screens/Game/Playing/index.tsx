@@ -120,7 +120,7 @@ export default function Playing({ level, data, word, wordId, tries, ...rest }: P
                     <Font name="coins" style={{ color: found ? theme.colors.check : theme.colors.err }}>{`${wordData.percent.toFixed(0)}%`}</Font>
                 </View>
                 <View style={styles.questionContainer}>
-                    <Font name="seasons">{level.question}</Font>
+                    <Font name="seasons" style={styles.question}>{level.question}</Font>
                 </View>
                 <View>
                     {createRows()}
