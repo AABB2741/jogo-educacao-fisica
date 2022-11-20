@@ -31,12 +31,42 @@ const levels = [{
             "Nadar",
             "Natação"
         ]
+    }, {
+        word: "Sol"
     }]
 }, {
     seasonId: "summer",
-    question: "",
     image: require("../../assets/imgs/levels/3.jpg"),
-    words: []
+    words: [{
+        word: "Praia"
+    }, {
+        word: "Mar",
+        alias: [
+            "Oceano",
+            "Maré",
+            "Água",
+            "Nadar"
+        ]
+    }, {
+        word: "Banhista",
+        alias: [
+            "Nadador",
+            "Pessoa",
+            "Pessoas"
+        ]
+    }, {
+        word: "Nuvem",
+        alias: [
+            "Céu",
+            "Nuvens"
+        ]
+    }, {
+        word: "Areia",
+        alias: [
+            "Chão",
+            "Terra"
+        ]
+    }]
 }, {
     seasonId: "summer",
     question: "",

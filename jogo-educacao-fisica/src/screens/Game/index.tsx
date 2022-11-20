@@ -107,9 +107,6 @@ export default function Game({ navigation, route }: GameProps) {
                 data={data}
             />
             <ScrollView contentContainerStyle={{ paddingBottom: 90 }}>
-                <TouchableOpacity onPress={() => console.log(level)}>
-                    <Database />
-                </TouchableOpacity>
                 {level.image ? (
                     <ImageBackground source={require("../../../assets/imgs/levels/3.jpg")} style={styles.questionContainer} imageStyle={{ opacity: 0.7 }}>
                         <View style={styles.options}>
@@ -118,7 +115,7 @@ export default function Game({ navigation, route }: GameProps) {
                             </TouchableOpacity>
                         </View>
                         <Font name="seasons" style={styles.question}>{level.question}</Font>
-                        <Font name="text" style={styles.infos}>56% concluído ∙ 2/5 palavras encontradas</Font>
+                        <Font name="text" style={[styles.infos, { color: theme.colors.font2 }]}>{`${level.words.filter(w => w.found(data.found ?? [])).reduce((ac, v) => ac + v.percent, 0).toFixed(0)}% concluído ∙ ${data.found?.length ?? 0}/${level.words.length} ${data.found?.length == 1 ? "palavra encontrada" : "palavras encontradas"}`}</Font>
                     </ImageBackground>
                  ) : ( 
                     <View style={{ paddingBottom: 30 }}>
