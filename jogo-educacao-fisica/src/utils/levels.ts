@@ -206,6 +206,61 @@ const levels = [{
         ]
     }]
 }, {
+    seasonId: "falls",
+    question: "Características do outono",
+    words: [{
+        word: "Vento",
+        alias: [
+            "Ventania"
+        ]
+    }, {
+        word: "Fruta",
+        alias: [
+            "Frutos"
+        ]
+    }, {
+        word: "Colheita",
+        alias: [
+            "Plantação",
+            "Colher"
+        ]
+    }]
+}, {
+    seasonId: "falls",
+    question: "",
+    image: require("../../assets/imgs/levels/falls-2.jpg"),
+    words: [{
+        word: "Floresta"
+    }, {
+        word: "Folha"
+    }, {
+        word: "Estrada",
+        alias: [
+            "Rua"
+        ]
+    }, {
+        word: "Laranja",
+        alias: [
+            "Cor"
+        ]
+    }]
+}, {
+    seasonId: "falls",
+    question: "O que fazer no outono?",
+    image: require("../../assets/imgs/levels/falls-3.jpg"),
+    words: [{
+        word: "Pintar",
+        alias: [
+            "Arte"
+        ]
+    }, {
+        word: "Passear",
+        alias: [
+            "Andar",
+            "Viajar"
+        ]
+    }]
+}, {
     seasonId: "winter",
     question: "O que usar no inverno?",
     words: [{
@@ -221,7 +276,7 @@ const levels = [{
     }]
 }, {
     seasonId: "winter",
-    question: "No inverno fica perfeito",
+    question: "Com o inverno, não tem como ficar melhor",
     words: [{
         word: "Filme",
         alias: [
@@ -246,10 +301,71 @@ const levels = [{
         unlock: 1
     }]
 }, {
-    seasonId: "spring",
-    question: "Quem é sua prima?",
+    seasonId: "winter",
+    question: "Esportes de inverno",
+    image: require("../../assets/imgs/levels/winter-3.jpg"),
     words: [{
-        word: "Vera"
+        word: "Esqui",
+        alias: [
+            "Ski",
+            ""
+        ]
+    }, {
+        word: "Alpinismo"
+    }, {
+        word: "Hóquei"
+    }, {
+        word: "Patinação",
+        unlock: 1
+    }]
+}, {
+    seasonId: "spring",
+    question: "Primavera",
+    image: require("../../assets/imgs/levels/spring-1.jpg"),
+    words: [{
+        word: "Flor",
+        alias: [
+            "Flores",
+            "Plantas",
+            "Planta"
+        ]
+    }, {
+        word: "Lindo",
+        alias: [
+            "Bonita",
+            "Bonito"
+        ]
+    }]
+}, {
+    seasonId: "spring",
+    question: "É lindo de se ver na primavera",
+    words: [{
+        word: "Flores"
+    }, {
+        word: "Animais",
+        alias: [
+            "Pássaros"
+        ]
+    }]
+}, {
+    seasonId: "spring",
+    question: "O que fazer na primavera?",
+    words: [{
+        word: "Bicicleta",
+        alias: [
+            "Ciclismo"
+        ]
+    }, {
+        word: "Piquenique",
+        alias: [
+            "Lanche",
+            "Lanchar"
+        ]
+    }, {
+        word: "Esporte",
+        alias: [
+            "Esportes"
+        ]
     }]
 }].map((level, id) => {
     return {
@@ -261,7 +377,7 @@ const levels = [{
         },
     };
 }).map(level => {
-    level.words = level.words.map((word, index) => ({
+    level.words = (level.words ?? []).map((word, index) => ({
         ...word,
         index: index + 1,
         // @ts-ignore
