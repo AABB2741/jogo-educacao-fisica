@@ -18,9 +18,10 @@ interface Props extends WordProps {
     wasFound: boolean;
     foundCount: number;
     play: (word: string) => void;
+    handleGuess: (guess: string) => void;
 }
 
-export default function Word({ word, index, percent, foundCount, wasFound, unlock, play }: Props) {
+export default function Word({ word, index, percent, foundCount, wasFound, unlock, play, handleGuess }: Props) {
     const { storage } = useStorage();
     const [reveal, setReveal] = useState(false);
     const [showLockHint, setShowLockHint] = useState(false);
@@ -35,7 +36,14 @@ export default function Word({ word, index, percent, foundCount, wasFound, unloc
                         desc={word}
                         visible={reveal}
                         onRequestClose={() => setReveal(false)}
-                    />
+                    >
+                        <TouchableOpacity style={styles.complete} onPress={() => {
+                            play(word);
+                            setReveal(false);
+                        }}>
+                            <Font name="button" style={styles.completeText}>Desbloquear</Font>
+                        </TouchableOpacity>
+                    </Popup>
                 )}
                 <Popup
                     title="Palavra bloqueada"
@@ -62,7 +70,14 @@ export default function Word({ word, index, percent, foundCount, wasFound, unloc
                     desc={word}
                     visible={reveal}
                     onRequestClose={() => setReveal(false)}
-                />
+                >
+                    <TouchableOpacity style={styles.complete} onPress={() => {
+                        handleGuess(word);
+                        setReveal(false);
+                    }}>
+                        <Font name="button" style={styles.completeText}>Desbloquear</Font>
+                    </TouchableOpacity>
+                </Popup>
             )}
             <View style={styles.statusContainer}>
                 <Font name="coins" style={[styles.percent, { color: wasFound ? theme.colors.accent : theme.colors.font }]}>{`${percent.toFixed(0)}%`}</Font>

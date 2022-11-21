@@ -166,6 +166,7 @@ export default function Game({ navigation, route }: GameProps) {
                         words={level.words.filter(w => !w.hidden)}
                         data={data}
                         play={setPlaying}
+                        handleGuess={handleGuess}
                     />
                 </Category>
                 

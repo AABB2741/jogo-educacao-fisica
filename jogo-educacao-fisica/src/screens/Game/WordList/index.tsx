@@ -12,9 +12,10 @@ interface Props {
     words: WordProps[];
     data: LevelProgress;
     play: (word: string) => void;
+    handleGuess: (guess: string) => void;
 }
 
-export default function WordList({ words, data, play }: Props) {
+export default function WordList({ words, data, play, handleGuess }: Props) {
     let reversed = [...words];
     reversed.sort((a, b) => a.percent <= b.percent ? -1 : 1).sort((a, b) => a.found(data.found ?? []) && !b.found(data.found ?? []) ? -1 : 0);
     reversed.reverse();
@@ -31,6 +32,7 @@ export default function WordList({ words, data, play }: Props) {
                     wasFound={item.found(data.found || [])}
                     foundCount={data.found?.length ?? 0}
                     play={play}
+                    handleGuess={handleGuess}
                 />
             )}
         />

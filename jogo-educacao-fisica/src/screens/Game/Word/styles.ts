@@ -11,6 +11,18 @@ export default StyleSheet.create({
         height: 100,
         justifyContent: "space-between"
     },
+    complete: {
+        backgroundColor: theme.colors.accent,
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+        alignItems: "center",
+        borderRadius: 12,
+        marginTop: 10
+    },
+    completeText: {
+        color: theme.colors.font2,
+        fontSize: 16
+    },
     statusContainer: {
         flexDirection: "row",
         alignItems: "center",

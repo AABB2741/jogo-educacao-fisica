@@ -220,10 +220,30 @@ const levels = [{
         word: "Touca"
     }]
 }, {
-    seasonId: "falls",
-    question: "O que eu mais sei fazer?",
+    seasonId: "winter",
+    question: "No inverno fica perfeito",
     words: [{
-        word: "Clicar"
+        word: "Filme",
+        alias: [
+            "Série",
+            "Assistir",
+            "TV"
+        ]
+    }, {
+        word: "Chá",
+        alias: [
+            "Chocolate quente",
+            "Chocolate",
+            "Café"
+        ]
+    }, {
+        word: "Cobertor"
+    }, {
+        word: "Dormir",
+        alias: [
+            "Cama"
+        ],
+        unlock: 1
     }]
 }, {
     seasonId: "spring",
