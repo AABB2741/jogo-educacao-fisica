@@ -3,6 +3,7 @@ import {
     ImageSourcePropType,
     Pressable,
     TouchableOpacity,
+    TouchableOpacityProps,
     View
 } from "react-native";
 
@@ -10,9 +11,8 @@ import Font from "../Font";
 
 import styles from "./styles";
 
-interface OptionProps {
+interface OptionProps extends TouchableOpacityProps {
     icon: React.ReactNode;
-    onPress?: any;
 }
 
 interface Props {
@@ -32,9 +32,9 @@ export default function Header({ title, icon, onPressIcon, rightOptions, leftOpt
     return (
         <View style={styles.container}>
             <View style={styles.optionContainer}>
-                {(leftOptions || []).map((option, i) => (
-                    <TouchableOpacity key={i} style={styles.optionLeft} onPress={option.onPress}>
-                        {option.icon}
+                {(leftOptions || []).map(({icon, ...option}, i) => (
+                    <TouchableOpacity key={i} style={styles.optionLeft} { ...option }>
+                        {icon}
                     </TouchableOpacity>
                 ))}
                 { icon && (
@@ -45,9 +45,9 @@ export default function Header({ title, icon, onPressIcon, rightOptions, leftOpt
                 <Font name="title" numberOfLines={1} style={styles.title}>{title}</Font>
             </View>
             <View style={styles.optionContainer}>
-                {(rightOptions || []).map((option, i) => (
-                    <TouchableOpacity key={i} style={styles.option} onPress={option.onPress}>
-                        {option.icon}
+                {(rightOptions || []).map(({icon, ...option}, i) => (
+                    <TouchableOpacity key={i} style={styles.option} {...option}>
+                        {icon}
                     </TouchableOpacity>
                 ))}
             </View>

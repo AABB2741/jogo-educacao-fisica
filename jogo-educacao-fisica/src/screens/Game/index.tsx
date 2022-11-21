@@ -10,7 +10,7 @@ import {
     ImageBackground
 } from "react-native";
 import Header from "../../components/Header";
-import { CaretLeft, Chats, Database, Lightbulb } from "phosphor-react-native";
+import { CaretLeft, Chats, CheckCircle, Database, Lightbulb } from "phosphor-react-native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { PlayParamList } from "../../@types/navigation";
 import { RouteProp } from "@react-navigation/native";
@@ -94,6 +94,23 @@ export default function Game({ navigation, route }: GameProps) {
             data
         });
     }
+
+    function handleCompleteLevel() {
+        let found = [];
+
+        for (let i = 1; i <= (level?.words.length ?? 0); i++) {
+            found.push(i);
+        }
+        console.log(found);
+        console.log({
+            levelID: level?.id ?? -1,
+            data: { ...data, found }
+        });
+        save({
+            levelID: level?.id ?? -1,
+            data: { ...data, found }
+        });
+    }
     
     return (
         <View style={styles.container}>
@@ -133,6 +150,12 @@ export default function Game({ navigation, route }: GameProps) {
                 {/* <Progress
                 
                 /> */}
+                {storage.enableHack && (
+                    <TouchableOpacity style={[styles.complete, !!level.image && { marginTop: 20 }]} onPress={handleCompleteLevel}>
+                        <CheckCircle color={theme.colors.err} size={24} />
+                        <Font name="button" style={styles.completeText}>Concluir nível</Font>
+                    </TouchableOpacity>
+                )}
                 <Category subtitle="Dê palpites">
                     <Guess
                         send={handleGuess}

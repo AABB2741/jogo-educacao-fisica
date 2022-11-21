@@ -29,9 +29,11 @@ export default StyleSheet.create({
         paddingVertical: 30
     },
     question: {
+        paddingHorizontal: 20,
         textTransform: "uppercase",
         color: theme.colors.font,
-        fontSize: 16
+        fontSize: 16,
+        textAlign: "center"
     },
     error: {
         fontSize: 14,

@@ -21,6 +21,21 @@ export default StyleSheet.create({
         textTransform: "uppercase",
         fontSize: 14
     },
+    complete: {
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        marginHorizontal: 20,
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+        borderWidth: 2,
+        borderRadius: 16,
+        borderColor: theme.colors.err
+    },
+    completeText: {
+        color: theme.colors.err,
+        marginLeft: 10
+    },
     float: {
         position: "absolute",
         right: 0,

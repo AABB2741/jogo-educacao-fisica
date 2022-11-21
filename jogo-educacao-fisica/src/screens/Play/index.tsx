@@ -2,6 +2,7 @@ import { useState } from "react";
 import {
     View,
     Text,
+    TouchableOpacity,
     FlatList
 } from "react-native";
 import { Eye, Sun, Trash } from "phosphor-react-native";
@@ -15,14 +16,17 @@ import styles from "./styles";
 import levels from "../../utils/levels";
 import theme from "../../utils/theme";
 import Settings from "./Settings";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as Storage from "../../utils/storage";
 import { useStorage } from "../../contexts/storage";
 import Popup from "../../components/Popup";
+import Font from "../../components/Font";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Play() {
     const { storage, setStorage } = useStorage();
     const [settingsOpen, setSettingsOpen] = useState(false);
     const [hackModalVisible, setHackModalVisible] = useState(false);
+    const [deleteModalVisible, setDeleteModalVisible] = useState(false);
     const [steps, setSteps] = useState(0);
 
     return (
@@ -37,6 +41,25 @@ export default function Play() {
                 visible={hackModalVisible}
                 onRequestClose={() => setHackModalVisible(false)}
             />
+            <Popup
+                title="Excluir palpites?"
+                desc="Se você estiver presenciando problemas de desempenho, excluir seus palpites pode ser uma solução. Deseja excluir TODOS os seus palpites? (Isso não excluirá seu progresso, somente os palpites que não encontraram palavras)."
+                visible={deleteModalVisible}
+                onRequestClose={() => setDeleteModalVisible(false)}
+            >
+                <TouchableOpacity
+                    style={styles.deleteButton}
+                    onPress={() => {
+                        setStorage({
+                            ...storage,
+                            levels: (storage.levels ?? []).map(l => ({ ...l, guesses: [] }))
+                        });
+                        Storage.setItem("progress", storage).then(() => setDeleteModalVisible(false));
+                    }}
+                >
+                    <Font name="button" style={styles.delete}>Excluir meus palpites</Font>
+                </TouchableOpacity>
+            </Popup>
             <Header
                 icon={storage.enableHack ? require("../../../assets/imgs/logo-hacked.png") : require("../../../assets/imgs/logo.png")}
                 onPressIcon={storage.enableHack ? () => {
@@ -54,15 +77,11 @@ export default function Play() {
                 }}
                 rightOptions={[{
                     icon: <Trash weight="fill" />,
-                    onPress: () => {
+                    onPress: () => setDeleteModalVisible(true),
+                    onLongPress: !storage.enableHack ? () => null : () => {
                         AsyncStorage.clear();
                         setStorage({});
                     }
-                }, {
-                    onPress: () => {
-                        console.log(storage);
-                    },
-                    icon: <Eye weight="fill" />
                 }]}
             />
             <FlatList
